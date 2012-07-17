@@ -864,7 +864,9 @@ $$q_{ms} = \frac{q_{ms}^{'}}{\sum_{s_2=1}^{S}{q_{ms_2}^{'}}}$$%{\sum_{s^'=1}^{S}
 \subsection{Discuss}
 \paragraph{Advantages} This method is fully probabilistic and is really effective compared to the other described methods. Plus it uses 300 speaker factors as in speaker recognition state-of-the-art. Moreover the convergence is guaranteed.
 
-\paragraph{Disadvantages} This method required an Universal Background Model while the other methods don't. Furthemore it cannot be applied on-the-fly.
+\paragraph{Disadvantages} This method required an Universal Background Model while the other methods don't and it cannot be applied on-the-fly.
+Furthermore this algorithm alone provides a raw segmentation of 1sec-segments so it requires to resegment using Viterbi.
+
 \chapter{Benchmark}
 
 To compare the Streaming system and the Variatonal Bayes system, a set
