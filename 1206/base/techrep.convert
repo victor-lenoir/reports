@@ -1,0 +1,133 @@
+
+		  MIGRATION DES RAPPORTS TECHNIQUES VERS SVN
+				 Didier Verna
+				  Août 2004
+
+
+
+export TMP=/usr/local/tmp
+export PRCS_REPOSITORY=/home/lrde/admin/prcs/repository
+
+
+* Étape 1: conversion
+*** Après correction (pas optimale) d'un bug de prcs2svn (LT 84)
+
+for i in `prcs admin pinfo | grep "techrep-"` ; do
+  prcs2svn.py -c -f -t debug --svn-root=file://$TMP --svn-project=lrde-techreps --subdir=`echo $i | sed s/techrep-//` $i |&tee log.$i
+  rm -fr $TMP/prcs2svn*
+done
+
+
+* Étape 2: détection des erreurs
+
+** Ces projets PRCS sont vides
+*** (à signaler aux intéressés à la fin du processus de migration):
+
+0209    Yann Regis-Gianas
+        A modular mixins modules system
+
+0214    Quoc Peyrot
+        Pattern recognition: restoration of old films using morphological
+        operators
+
+0303    Niels Van Vliet
+        Image segmentation applied to cytology
+
+0410    Nicolas Despres
+        C++ transformations panorama.
+
+** Ces projets manquent de droits:
+
+0312
+
+** D'autre part, le 0302 est probablement un séminaire
+intégré par erreur dans les rapports techniques.
+*** => Signalé dans numbers.2002.
+
+** Ces projets ont généré des erreurs fatales.
+*** => Effacés pour l'instant.
+
+0216 0307
+
+
+* Étape 3: conversion du 0312
+*** Après correction des droits d'accès
+
+prcs2svn.py -c -f -t debug --svn-root=file://$TMP --svn-project=lrde-techreps --subdir=0312 techrep-0312 |&tee log.techrep-0312
+rm -fr $TMP/prcs2svn*
+
+
+* Étape 4: conversion du 0216
+*** Après correction d'un bug de prcs.py (LT 85)
+
+prcs2svn.py -c -f -t debug --svn-root=file://$TMP --svn-project=lrde-techreps --subdir=0216 techrep-0216 |&tee log.techrep-0216
+rm -fr $TMP/prcs2svn*
+
+
+* Étape 5: conversion du 0307
+*** Après correction temporaire d'un bug de prcs2svn.py. Les lignes suivantes
+*** sont commentées (la fin de la méthode merge):
+*** # Fix tc's bug
+***   if prcs_merge_parent != prcsProject.prj.merge_parents[-1]:
+***     self.svn.changes_apply_files_directories_delete(diffs)
+
+prcs2svn.py -c -f -t debug --svn-root=file://$TMP --svn-project=lrde-techreps --subdir=0307 techrep-0307 |&tee log.techrep-0307
+rm -fr $TMP/prcs2svn*
+
+
+* Étape 6: élimination des liens symboliques pointant sur techrep-base et
+* réorganisation en une seule arborescence trunk / branches / tags
+*** (dans une copie locale)
+
+for j in Makefile COPYING COPYING.DOC README techrep.cls ; do
+  for i in `find [0-9]* -name $j` ; do
+    svn delete $i
+  done
+done
+svn ci -m "Deleted all symlinks to techrep-base"
+
+svn delete */tags */branches
+svn ci -m "Deleted tags and branches directories"
+
+svn mkdir trunk branches tags
+svn ci -m "Added toplevel trunk branches and tags directories"
+
+for i in base [0-9]* ; do
+  svn mv $i/trunk trunk/$i
+done
+svn ci -m "Reorganize in a single trunk branches tags directory structure"
+
+# For some reason, svn did not remove the empty directories it has just moved.
+svn delete [0-9]* base
+svn ci -m "Delete old empty directories"
+
+
+* Étape 7: élimination d'un répertoire base superflu
+*** (dans une copie locale)
+
+cd trunk
+svn delete 0001/base
+svn ci -m "Remove 0001/base directory"
+
+
+* Étape 8: intégration de 'base' dans chaque rapport comme une réf externe
+*** (dans une copie locale)
+
+*** #### NOTE: la version actuelle de Subversion (et jusqu'à au moins 1.1) ne
+*** permet pas d'avoir des chemins relatifs dans les externals. Par conséquent
+*** je suis obligé de spécifier mon dépotoir temporaire en absolu.:-(
+
+cd trunk
+for i in [0-9]* ; do
+  svn propset svn:externals "base file://$TMP/lrde-techreps/trunk/base" $i
+done
+svn ci -m "Added external references to base in each report"
+
+
+* Étape 9: modification des scripts pour refléter la nouvelle structure
+
+
+
+Local Variables:
+mode: outline
+End:

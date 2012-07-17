@@ -1,0 +1,71 @@
+2011-06-08  Laurent Senta <senta@lrde.epita.fr>
+
+	* README: Add Notes section about encoding.
+	* pdf/makefile: Convert svg to pdf using inkscape instead of png
+
+2011-06-06  Didier Verna  <didier@lrde.epita.fr>
+
+	* techrep.cls: Require ifpdf instead of defining \ifpdf ourselves.
+
+2008-01-31  Simon Nivault  <simon.nivault@lrde.epita.fr>
+
+	Fix LRDE macro.
+	* techrep.cls: Fix LRDE macro.
+
+2007-07-09  Didier Verna  <didier@lrde.epita.fr>
+
+	* ps/logo_lrde.eps:
+	* pdf/logo_lrde.png: Update.
+
+	* techrep.cls: Title page update (add room for abstracts).
+
+2007-05-18  Nicolas Pierron  <nicolas.pierron@lrde.epita.fr>
+
+	Fix front page.
+	* base/common/base/techrep.cls: .
+
+2005-05-27  Michael Cadilhac <micha@lrde.epita.fr>
+
+	* techrep.cls: Add `color' to the list of required packages.
+
+2004-12-16  Didier Verna  <didier@lrde.epita.fr>
+
+	* techrep.cls: New commands \email and \www.
+
+2004-12-15  Didier Verna  <didier@lrde.epita.fr>
+
+	BACKWARD INCOMPATIBLE CHANGE !!!
+
+	* techrep.cls: Change syntax of \revision command to match
+	Subversion's (deficient) keyword syntax.
+	Change \maketitle to output a bigger title, a smaller author and
+	the revision below.
+
+2004-11-08  Didier Verna  <didier@lrde.epita.fr>
+
+	* techrep.cls: Use package natbib and apalike style.
+
+2004-09-13  Didier Verna  <didier@lrde.epita.fr>
+
+	* techrep.cls: Update for SVN revision keyword.
+
+	* makefile, ps/makefile, pdf/makefile: Update after prcs2svn
+	conversion.
+
+2003-10-29  Didier Verna  <didier@lrde.epita.fr>
+
+	* techrep.cls: New command \revision for PRCS keyword.
+
+2003-07-08  Didier Verna  <didier@lrde.epita.fr>
+
+	* techrep.cls: Set parindent to 1em.
+
+2003-07-02  Didier Verna  <didier@lrde.epita.fr>
+
+	* makefile: Support new architecture.
+	* pdf/makefile: Ditto. Fixes in images generation.
+	* ps/makefile: Ditto.
+	* techrep.cls: Don't \tableofcontents automatically.
+	* README: New.
+	* COPYING: New.
+	* COPYING.DOC: New.

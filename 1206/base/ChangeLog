@@ -1,0 +1,345 @@
+2009-03-18  Florent DHalluin  <d-halluin@lrde.epita.fr>
+
+	Fix report 0902 signaled in numbers.txt
+	* numbers.txt: .
+
+2008-06-26  Warren Seine  <soow@lrde.epita.fr>
+
+	maketechrep: Use 'cut' instead of 'awk'.
+	* maketechrep: Update.
+
+2008-06-25  Warren Seine  <soow@lrde.epita.fr>
+
+	maketechrep: Fix common error './maketechrep --help'.
+        './maketechrep --help' used to create a technical report
+        called '--help'. It now checks for a dash in the beginning of
+        the first argument.
+	* maketechrep: Update.
+
+2008-01-31  Simon Nivault  <simon.nivault@lrde.epita.fr>
+
+	Fix author in numbers.txt.
+	* base/numbers.txt: Here.
+
+2008-01-02  Nicolas Pierron  <nicolas.pierron@lrde.epita.fr>
+
+	Update the list of authors for 0801.
+	* base/numbers.txt: Add other authors.
+
+2007-07-09  Didier Verna  <didier@lrde.epita.fr>
+
+	* README: Update information about writing abstracts.
+
+2007-05-30  Nicolas Pierron  <nicolas.pierron@lrde.epita.fr>
+
+	Copy a better otter.
+	* common/base/pdf/logo_lrde.png,
+	* common/base/ps/logo_lrde.eps: Copying from lrde-seminars.
+
+2007-03-02  Nicolas Pierron  <nicolas.pierron@lrde.epita.fr>
+
+	Fix the link to /share/bib/csi.bib.
+	* maketechrep: Add the "trunk" in the name directory.
+
+2007-03-02  Nicolas Pierron  <nicolas.pierron@lrde.epita.fr>
+
+	Add automatic update of the file numbers.txt
+	* common/report.tex: Add The @TITLE@ field.
+	* maketechrep:
+		Now this script used to create reports take only the
+	title of your technical report. The date is fetch by the
+	command 'date', so be sure that your computer have the right
+	year. the number used is computed by looking at the file
+	numbers.txt and fetching the last report from the same year or
+	start with the number 01.
+
+2006-11-29  Christophe Berger  <christophe.berger@lrde.epita.fr>
+
+	* 0621: New report: "Fast Level Lines Transform algorithm".
+
+2006-07-18  Benoit Sigoure  <benoit.sigoure@lrde.epita.fr>
+
+	* maketechrep: Guess the author's name and email address.
+	* common/report.tex: Add placeholders for the author's name and email
+	address.
+
+2006-07-18  Benoit Sigoure  <benoit.sigoure@lrde.epita.fr>
+
+	* README: Fix a typo.
+
+2005-05-24  Damien Thivolle  <damien@lrde.epita.fr>
+
+	* README: Expanse svn server name to svn.lrde.epita.fr.
+
+2005-05-24  Damien Thivolle  <damien@lrde.epita.fr>
+
+	* README: Update path to the svn repository.
+
+2005-01-06  Julien Roussel  <julien.roussel@lrde.epita.fr>
+
+	* maketechrep: Replace 'svn-lrde' by 'svn'.
+
+2004-12-28  Thomas Claveirole  <thomas.claveirole@lrde.epita.fr>
+
+	* numbers.txt: Update 0401: change from "An analysis of the Vaucanson
+	project" to "An overview of Vaucanson".
+
+2004-12-16  Didier Verna  <didier@lrde.epita.fr>
+
+	* README (exemple): Document \email and \www.
+
+2004-11-18  Nicolas Pouillard  <ertai@lrde.epita.fr>
+
+	* numbers.txt: New title for 0407: Extending SDF.
+
+2004-11-09  Julien Roussel  <julien.roussel@lrde.epita.fr>
+
+	* maketechrep (repository): Replace 'svn' by 'svn.lrde.epita.fr'
+	to avoid the unresolved host problem during checkout outside of
+	the LRDE.
+
+2004-09-13  Didier Verna  <didier@lrde.epita.fr>
+
+	* README, TODO: Update after prcs2svn conversion.
+
+	* numbers.2000,	numbers.2002, numbers.2003, numbers.2004: Removed,
+	concatenated into...
+	* numbers.txt: this one.
+
+	* maketechrep: New.
+	* techrep.convert: Ditto.
+	* prj: Removed.
+	* Makefile: Ditto.
+
+2004-08-24  Didier Verna  <didier@lrde.epita.fr>
+
+	* numbers.2003: Signal that 0302 is removed.
+
+2004-07-24  Louis-Noël Pouchet  <loulou@lrde.epita.fr>
+
+	* 0413: New report: "An interpreter for Vaucanson."
+
+2004-07-19  Sarah O'Connor  <sarah@lrde.epita.fr>
+
+	* 0412: New report: "Implementation of transducers in Vaucanson."
+
+2004-07-10  Olivier Gournet  <victor@lrde.epita.fr>
+
+	* 0411: New report: "Progress in C++ source preprocessing".
+
+2004-07-07  Nicolas "PoLRoP" Desprès  <nicolas.despres@lrde.epita.fr>
+
+	* 0410: New report: "C++ transformations panorama".
+
+2004-07-07  Damien Thivolle  <damien@lrde.epita.fr>
+
+	* 0409: New report: "Galaxy images classification".
+
+2004-07-07  Simon Odou  <simon@lrde.epita.fr>
+
+	* 0408: New report: "Image restoration by deconvolution".
+
+2004-07-07  Nicolas Pouillard  <ertai@lrde.epita.fr>
+
+	* 0407: New report: "SDF extension".
+
+2004-06-21  Loïc Fosse  <loic@lrde.epita.fr>
+
+	* 0406: New report: "Dynamic use of statically typed libraries".
+
+2004-06-15  Valentin David  <valentin@lrde.epita.fr>
+
+	* 0405: New report: "Attributes for disambiguation".
+
+2004-06-12  Niels Van Vliet  <niels@lrde.epita.fr>
+
+	* 0404: New report: "Color image segmentation".
+
+2004-06-12  Clément Vasseur  <clement.vasseur@lrde.epita.fr>
+
+	* 0403: New report: "Code generator generators".
+
+2004-06-11  Julien Roussel  <spip@lrde.epita.fr>
+
+	* 0402: New report: "Transformers: C++ type checking".
+
+2004-06-10  Thomas Claveirole  <thomas.claveirole@lrde.epita.fr>
+
+	* 0401: New report: "Analysis of the Vaucanson project".
+
+2004-04-16  PoLRoP  <nicolas.despres@lrde.epita.fr>
+
+	* 0310: Revision 1: "Transformers: a C++ program transformation
+	framework"
+
+2003-10-29  Didier Verna  <didier@lrde.epita.fr>
+
+	* README: Documentation update for the PRCS "Revision" keyword
+	support.
+
+2003-07-02  Didier Verna  <didier@lrde.epita.fr>
+
+	* README: Documentation update and fixes.
+	* Makefile (report): Support new architecture, report skeletons.
+
+2003-06-13  Benoît Perrot  <benoit@lrde.epita.fr>
+
+	* 0311: New report: "Tasks graph and data dependencies".
+
+2003-06-11  Clement Vasseur  <vasseu_c@lrde.epita.fr>
+
+	* 0310: Report: "Program Transformation and the C++ Language",
+	continued from original report 0217
+
+2003-06-10  Valentin David  <valentin@lrde.epita.fr>
+
+	* 0309: New report: "Overloading in Tiger with Stratego".
+
+2003-06-05  Jean-Baptiste Mouret  <jb@lrde.epita.fr>
+
+	* 0308: New report: "Curvilinear object extraction".
+
+2003-06-05  David Lesage  <david@lrde.epita.fr>
+
+	* 0307: New report: "Evidence theory".
+
+2003-05-27  Sylvain Berlemont  <Sylvain.Berlemont@lrde.epita.fr>
+
+	* 0306: New report: "Combinatorial map".
+
+2003-05-11  Loic Fosse  <fosse_l@lrde.epita.fr>
+
+	* 0305: New report: "DSL on automatons".
+
+2003-05-07  Thomas Claveirole  <clavei_t@lrde.epita.fr>
+
+	* 0304: New report: "Smart Automaton Implementations".
+
+2003-05-06  Youssef El Fassy Fihry  <youssef@lrde.epita.fr>
+
+	* 0302: New report: "Introducing genericity".
+
+2003-05-05  Niels Van Vliet  <niels@lrde.epita.fr>
+
+	* 0303: New report: "Image segmentation applied to cytology".
+
+2003-03-20  Astrid Wang  <astrid@lrde.epita.fr>
+
+	* 0301: New report: "Snakes".
+
+2003-03-12  Maxime Rey  <max@lrde.epita.fr>
+
+	* 0220: Draft report ready for review
+
+2003-01-13  Ignacy Gawedzki  <ig@lrde.epita.fr>
+
+	* 0219: Final report ready, commited to the wiki page.
+
+	* 0219: Draft report ready, call for peer review before committing.
+
+2003-01-10  Ignacy Gawedzki  <ig@lrde.epita.fr>
+
+	* 0219: New report: "Theory of objects and application to the C++
+	language"
+
+2002-11-20  Emmanuel Turquin  <turqui_e@epita.fr>
+
+	* 0218: New report: "Wavelet transforms and their
+	implementation in Olena"
+
+2002-11-04  Robert Anisko  <robert@lrde.epita.fr>
+
+	* 0217: New report: "Program Transformation and the C++ Language".
+
+2002-09-30  Astrid Wang  <astrid@lrde.epita.fr>
+
+	* 0216: new report: "User-friendly and secure initializations in C++".
+
+2002-09-17  jean-sebastien mouret  <js@lrde.epita.fr>
+
+	* 0215: new report: "Visual Programming: Vishnu part two".
+
+2002-09-13  Quoc Peyrot  <chojin@lrde.epita.fr>
+
+	* 0214: new report: "Pattern recognition: restoration of old films
+	using morphological operators".
+
+2002-08-22  Nicolas Tisserand  <tisser_n@lrde.epita.fr>
+
+	* 0213: new report: "Tools for C++ language manipulations"
+
+2002-08-22  Nicolas Burrus  <burrus_n@lrde.epita.fr>
+
+	* 0212: new report: "Safe and efficient data types in C++".
+
+2002-08-21  david lesage  <david@lrde.epita.fr>
+
+	* 0211: new report: "Metamorpher: a structural design pattern".
+	* prj: link to techrep-base.prj.
+
+2002-08-20  Robert Anisko  <robert@lrde.epita.fr>
+
+	* 0210: new report: "Towards Automatic Partial Evaluation for the C++
+	language".
+
+2002-08-12  Yann Régis-Gianas  <yann@epita.fr>
+
+	* 0209: new report "A modular mixins module system".
+
+2002-07-23  Didier Verna  <didier@lrde.epita.fr>
+
+	* Makefile: include common/makefile.inc
+
+	* README: Update for archive split.
+
+	* makefile.inc: new file.
+
+	* Makefile (report): new target: report.
+
+	* Moved all generic Makfiles to common/ directory.
+
+2002-07-17  jean-sebastien mouret  <js@lrde.epita.fr>
+
+	* 0205: new report: "Visual Programming : Vishnu preliminaries".
+
+2002-07-17  Emmanuel Turquin  <ender@herbert>
+
+	* 0204 : new report: "Towards fast image-based rendering of volume
+	data ".
+
+2002-07-11  Raphaël Poss  <raph@lrde.epita.fr>
+
+	* 0203 : new report: "Static inheritance in C++".
+
+2002-07-02  Clément Fauré  <clement@hostile.lrde.epita.fr>
+
+	* 0202 : new report: "Watermarking and perceptual modeling".
+
+2002-06-21  Quôc Peyrot  <chojin@lrde.epita.fr>
+
+	* 0201 : new report: "Watermarking en domaine spatial".
+
+2002-06-19  Didier Verna  <didier@lrde.epita.fr>
+
+
+	* Makefile (checkin): new target
+	README: document it.
+
+	* BIG REORGANIZATION CLEANUP:
+	- New PRCS archive: technical-reports.
+	- New directory "common" with techrep.cls and associate files
+	- New files: Makefile makefile.* makerep TODO
+	- renamed files: numbers.* README
+	- Rewritten the README file.
+	- use only the number to identify the reports: remove `techrep' or
+	`tr' from file names. Renamed techrep directories to just their
+	numbers.
+
+2002-06-13  Geoffroy Fouquier  <Geoffroy.Fouquier@lrde.epita.fr>
+
+	* Initial checkin
+
+2002-06-13  Geoffroy Fouquier  <Geoffroy.Fouquier@lrde.epita.fr>
+
+	* Add tr0001
+	* Add template

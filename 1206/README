@@ -1,0 +1,51 @@
+							       -*- outline -*-
+
+
+EPITA Research and Development Laboratory,
+instructions for compiling technical reports.
+
+* I. Requirements:
+* ================
+
+** Tools:
+** ------
+
+- GNU make (other version don't work with these makefiles).
+- LaTeX2e  (for latex, dvips, pdflatex)
+- texi2dvi (this executable is part of makeinfo).
+
+Depending on the presentation's figures, if any, and on whether you generate
+dvi, ps or pdf, you might also need fig2dev, epstopdf, dia and ImageMagick's
+convert program.
+
+
+** LaTeX packages:
+** ---------------
+
+Here are the required packages, along with their minimum release dateL
+
+- geometry 2002/07/08
+- inputenc 2001/07/10
+- fontenc  2001/06/05
+- palatino 2002/09/08
+- hyperref 2003/01/22
+- fancyhdr 2002/12/09
+- babel    2001/03/01 (for presentations in french; there should be none :-)
+- graphicx 1999/02/16
+
+
+* II. Compilation:
+* ================
+
+- ps and dvi versions are generated in the ps/ subdirectory.
+- pdf versions are generated in the pdf/ subdirectory.
+
+`make' alone generates ps and pdf version. Otherwise, you can use the
+following specific targets: ps, pdf, or switch to the desired subdirectory and
+just type `make'.
+
+* III. Notes:
+* ===========
+
+techrep is enforcing latin1 option for inputenc
+(M-X set-buffer-coding-system iso-8859-1 in emacs)

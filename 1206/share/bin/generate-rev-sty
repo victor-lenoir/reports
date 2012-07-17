@@ -1,0 +1,57 @@
+#! /usr/bin/perl -w
+
+use strict;
+
+my @month_fr = qw{Janvier Février Mars Avril Mai Juin Juillet
+  Août Septembre Octobre Novembre Décembre};
+
+my $changelog = $ARGV[0];
+#-f $changelog || die "no such file: $changelog";
+
+$ENV{'LC_ALL'} = 'C';
+
+my %info;
+
+my $svn_info = `svn info $changelog 2>/dev/null ||
+git log -n 1 --pretty=format:'Revision: %h
+Last Changed Author: %an
+Last Changed Date: %ai' $changelog`;
+$svn_info =~
+  s{^([\w\s]+):\s+(.*)$}
+   {
+     my $val = $2;
+     (my $key = $1) =~ s| ||g;
+     $key =~ s/^LastChanged//g;
+     $info{$key} = $val;
+   }exmg;
+
+# Translate the date into something nicer to read.
+# Last Changed Date: 2008-06-04 17:37:38 +0200 (Wed, 04 Jun 2008)
+$info{Date} =~
+    m/^(\d+)-(\d+)-(\d+) (\d+):(\d+):(\d+) ([+\d]+)(?: \((.*)\))?$/;
+%info = (%info,
+         Year => $1,
+         Month => $2,
+         Day => $3,
+         Hour => $4,
+         Minute => $5,
+         Second => $6,
+         TimeZone => $7,
+         TimeShortDate => $8 || '',
+    );
+($info{DayShort} = $info{Day}) =~ s/^0//;
+$info{MonthFrench} = $month_fr[$info{Month} - 1];
+
+# Be sure to define at least SvnRev, even if to nothing.
+$info{Rev} = $info{Revision} || '';
+
+for my $k (sort keys %info)
+{
+  print "\\newcommand{\\Svn$k}{$info{$k}\\xspace}\n";
+}
+
+print "\n%% Backward compatibility.\n";
+for my $k (sort keys %info)
+{
+  print "\\newcommand{\\SvnLastChanged$k}{\\Svn$k}\n";
+}

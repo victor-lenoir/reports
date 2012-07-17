@@ -1,0 +1,297 @@
+                                                               -*- outline -*-
+
+
+		   Création de rapports techniques au LRDE
+
+
+
+* 0. Organisation:
+* ================
+
+Les rapports techniques du LRDE sont gérés par Subversion. L'archive est
+accessible par svn à l'adresse suivante: https://svn.lrde.epita.fr/svn/lrde-techreps
+
+Chaque rapport technique constitue un sous répertoire de cette archive, dont
+le nom correspond au numéro du rapport en question.
+
+
+
+* I. Création:
+* ============
+
+** 1. Numéro de rapport:
+** -----------------------------------
+Les rapports sont numérotés selon une politique particulière:
+- le format du numéro est <aann>,
+- aa est l'année en cours sur deux chiffres,
+- nn est un numéro sur deux chiffres, qui repart à 01 chaque année et qui
+  est incrémenté pour chaque nouveau rapport.
+
+exemple: le premier  rapport de 1999 -> 9901
+         le deuxième rapport de 1999 -> 9902
+
+La commande `svn list https://svn.lrde.epita.fr/svn/lrde-techreps/trunk'
+vous donnera la liste de tous les numéros de rapport existant.
+
+** 2. Tapez `maketechrep <title>':
+** ------------------------------
+<title> étant le titre de votre rapport.
+
+*** Vous devez avoir les variables d'environnement FULLNAME et EMAIL
+correctement remplies.
+
+*** Cette commande effectue les opérations suivantes:
+- ajout d'une référence dans le fichier base/numbers.txt.
+- création d'un répertoire <aann> dans lequel vous travaillerez,
+- ajout de ce répertoire dans l'archive subversion.
+
+De plus, le répertoire nouvellement créé contient:
+- un sous-répertoire « base » contenant l'outillage commun à tous les rapports
+  (classe LaTeX, Makefiles etc),
+- un squelette de rapport nommé « <aann>.tex » (déjà intégré à l'archive),
+- un Makefile (lien symbolique dans base).
+
+Le sous-répertoire « base » est en fait une copie (au sens svn:externals) du
+répertoire « https://svn.lrde.epita.fr/svn/lrde-techreps/trunk/base ».
+
+** 3. Mettez à jour l'archive Subversion:
+** --------------------------------------
+dans le répertoire <aann> nouvellement créé,
+
+*** vérifier le fichier base/numbers.txt
+en regardant le numéro du rapport, ses auteurs et son titre. Basez vous sur
+les entrées déjà existantes pour la mise en forme.
+
+*** sauvegardez dans l'archive Subversion
+si vous avez modifier le fichier base/numbers.txt
+svn ci -m "Fix report <aann> signaled in numbers.txt" base/numbers.txt
+
+
+** 5. Vous pouvez commencer l'édition.
+** -----------------------------------
+Faites des checkins régulièrement, et n'oubliez surtout pas les `svn add' qui
+vont bien quand vous rajoutez des fichiers ! Le seul fichier initialement
+inclus dans l'archive est le squelette <aann>.tex.
+
+La classe latex des rapports techniques est décrite dans l'annexe A.
+
+
+
+* II. Compilation et Visualisation:
+* =================================
+
+** 1. Pour compiler votre rapport:
+** -------------------------------
+Tapez simplement `make' dans son répertoire. La compilation fabrique toujours
+un DVI un PostScript et un PDF. La fabriquation du DVI et du PostScript a lieu
+dans le sous répertoire ps/. Celle du PDF dans le sous-répertoire pdf/ (ceci
+est nécessaire pour plein de raisons techniques). En d'autres termes, la
+racine de votre rapport n'est jamais polluée par aucun fichier généré.
+
+** 2. Pour visualiser le résultat:
+** -------------------------------
+Il existe des cibles raccourci pour make: psview, dviview, pdfview qui vous
+évitent de lancer les programmes à la main.
+
+** 3. `make' locaux:
+** -----------------
+Si vous ne souhaitez pas compiler systématiquement tous les formats de votre
+rapport, il y a deux possibilités:
+
+1/ travailler à la racine avec des cibles particulières:
+   en utilisant les cibles suivantes avec make: ps, dvi et pdf, psview etc.
+
+2/ travailler dans un sous-répertoire avec les cibles générales:
+   make tout court.
+
+D'autre part, vous disposez partout (racine comme sous-répertoires) des cibles
+clean et distclean qui nettoient respectivement les fichiers auxiliaires et en
+plus tous les résultats des compilations.
+
+
+
+* III. Distribution:
+* ==================
+
+À la racine de votre rapport, tapez `make dist'. Cela génère une archive
+nommée <aann>.tar.bz2. À noter que cette archive devient auto-contenue: tous
+les liens vers base/ sont remplacés par les fichiers pointés eux-même.
+N'importe qui peut donc télécharger cette archive et compiler le rapport de
+manière autonome.
+
+
+
+* IV. Extraction:
+* ===============
+
+Supposons que vous vouliez faire un checkout du rapport <aann> dont vous
+n'êtes pas l'auteur, ou dont vous n'avez pas de copie de travail locale.
+
+Vous commencez par le récupérer:
+svn checkout https://svn.lrde.epita.fr/svn/lrde-techreps/trunk/<aann> <aann>
+
+Comme les liens vers base/ ne sont pas sous le contrôle de Subversion, il est
+nécessaire à ce stade de sortir un Makefile à la main avant de pouvoir
+compiler le rapport:
+
+cd <aann>
+ln -s base/common/base/makefile Makefile
+make
+
+Et voilà.
+
+
+
+
+Annexes:
+
+* A. La Classe TechRep:
+* =====================
+
+Les rapports utilisent tous la classe `techrep' qui se trouve dans le
+répertoire `base/common'. Cette classe est basée sur la classe `report'
+standard: vous avez des \chapter, des \section etc.
+
+** 1. Rapports en Français:
+** ------------------------
+Si votre rapport est écrit en français (c'est pas bien), passez l'option
+french (ou francais) à la classe: \documentclass[french]{techrep}. Il n'existe
+aucune autre option pour cette classe (sans ça, les rapports ne seraient pas
+trop uniformes, pas vrai ?)
+
+
+** 2. Le préambule du document:
+** ----------------------------
+Pour que votre rapport compile, il est nécessaire d'appeler certaines
+commandes (obligatoires) de la classe dans le préambule du document. Ces
+commandes figurent dans le skelette automatiquement généré; vous n'avez plus
+qu'à les remplir:
+
+*** \title{...}
+Spécifie le titre du rapport.
+
+*** \author{...}
+Spécifie le ou les auteurs du rapport.
+
+*** \revision<syntaxe bizarre>
+Spécifie le numéro de révision Subversion. Ce champ est rempli automatiquement
+par svn soi-même.
+
+*** \date{mois année}
+Spécifie la date d'écriture du rapport. Le format doit être <mois année>, par
+exemple: «April 2000».
+
+*** \email{email}
+Permet de remplacer l'adresse email standard du labo par une adresse de votre
+choix (optionnel).
+
+*** \www{URL}{TEXT}
+Permet de remplacer le lien web standard du labo par un lien de votre choix
+(optionnel).
+
+*** \summary{...}
+Spécifie un résumé EN ANGLAIS qui apparaîtra sur la couverture. Ce résumé est
+OBLIGATOIRE, et dois faire dans les 120 mots environ.
+
+*** \frenchsummary{...}
+Spécifie un résumé EN FRANÇAIS qui apparaîtra sur la couverture. Ce résumé est
+OBLIGATOIRE, et dois faire dans les 120 mots environ. Faites attention à ce
+que les deux résumés tiennent sur la page de titre, sans repousser le pied de
+page (logo + texte) sur la page suivante pour autant.
+
+*** \keywords{...}
+Spécifie les mots clés de votre rapport.
+
+*** Remarques:
+- Le numéro du rapport est calculé automatiquement, il n'existe pas de
+  commande pour le spécifier.
+- Les paramêtres PDF title, author subject et keywords sont remplis
+  automatiquement. Vous les voyez par exemple apparaître dans la section
+  «Document Info» d'acroread.
+
+
+** 3. Le corps du document:
+** ------------------------
+La page de couverture est calculée automatiquement. Le squelette de rapport
+qui est généré contient un header, une première section sur la FDL et un appel
+à \tableofcontents. Vous pouvez ensuite commencer votre rapport par le premier
+chapitre (typiquement: \chapter{Introduction}), comme vous le feriez dans la
+classe report.
+
+*** Inclusion de figures
+
+**** Fichiers communs aux versions ps et pdf
+
+Un certain nombre de formats peuvent être utilisés à la fois pour la
+version ps et pour la version pdf, car ils sont automatiquement
+convertis si besoin. Voici la liste des formats et les programmes
+qu'ils nécessitent pour leur conversion :
+
+- .dia => dia, epstopdf uniquement pour la version pdf
+- .fig => fig2dev
+- .svg => convert
+- .jpg => convert
+- .pdf => convert pour la version ps, rien pour la version pdf
+- .png => convert pour la version ps, rien pour la version pdf
+- .eps => epstopdf pour la version pdf, rien pour la version ps
+
+Ces figures peuvent être stockées :
+
+- A la racine du rapport (par défaut)
+
+- Dans un répertoire de votre choix. Il suffit dans ce cas de créer un
+  fichier makefile.inc à la racine de votre rapport qui contient par
+  exemple :
+
+GRAPHICS_DIR := ../graphics
+
+  pour pouvoir mettre tous les fichiers graphiques dans le répertoire
+  graphics/ à la racine de votre rapport.
+
+Si une conversion est nécessaire, les images résultantes seront
+placées dans le répertoire ps/ ou pdf/ à la compilation.
+
+**** Fichiers dédiés à un format de sortie spécifique (ps ou pdf)
+
+Si vous désirez mettre des fichiers figures vraiment spécifiques à un
+format de sortie, il faut les placer dans le répertoire ps/ ou pdf/.
+
+Dans ce cas, il peut se poser un problème de dépendances que make ne
+connaît pas. Vous avez la possibilité de rajouter des fichiers
+`makefile.inc' à la racine de votre rapport, et dans les sous
+répertoires ps/ et pdf/. Sachez que le nom de votre rapport (au sens
+de make) est $(REPORT).
+
+EXEMPLE: supposons que vous ayez une image toto à inclure dans votre
+document par \includegraphics{toto}. Vous en mettez simplement une version
+toto.ps dans le sous répertoire ps/, et une version toto.png dans le sous
+répertoire pdf/.
+
+Pour que make connaisse cette nouvelle dépendance, vous écrivez un
+fichier ps/makefile.inc contenant ceci:
+
+$(REPORT).dvi: toto.ps
+
+  et un fichier pdf/makefile.inc contenant ceci:
+
+$(REPORT).pdf: toto.png
+
+** 4. Autres:
+** ----------
+Si vous avez des fichiers particuliers à utiliser, comme par exemple des .bib
+et tout le tintouin, mettez les à la racine de votre rapport. Techniquement
+parlant, quand LaTeX compile (rappel: cela se passe dans les sous répertoires
+ps/ et pdf/), il cherche ses sources dans .. (c.a.d. la racine de votre
+rapport), et ce que vous aviez déjà dans TEXINPUTS. De même, les
+bibliographies sont trouvées dans .. et ce que vous aviez dans BIBINPUTS.
+
+
+
+
+Have Fun !
+
+--
+Didier Verna, didier@lrde.epita.fr, http://www.lrde.epita.fr/~didier
+
+EPITA / LRDE, 14-16 rue Voltaire   Tel.+33 (1) 44 08 01 85
+94276 Le Kremlin-Bicêtre, France   Fax.+33 (1) 53 14 59 22   didier@xemacs.org

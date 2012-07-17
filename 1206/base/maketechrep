@@ -1,0 +1,144 @@
+#! /bin/sh
+
+set -e
+
+repository=https://svn.lrde.epita.fr/svn
+project=${repository}/lrde-techreps
+publis=${repository}/lrde-publis
+share=${repository}/lrde-publis/trunk/share
+
+if test $# != 1 -o "x$(echo $1 | tr -d '[:digit:]')" = "x" \
+                -o "x$(echo $1 | cut -c1)" = "x-"; then
+  echo "Usage: maketechrep <title>"  1>&2
+  exit 1
+fi
+
+stderr()
+{
+  echo 1>&2 "$@"
+}
+
+fatal_envvar()
+{
+  stderr "Cannot find the environment variable \`$1'"
+  shift
+  stderr "$@"
+  stderr "You might consider using \`export $1=<FIXME>'"
+  exit 1
+}
+
+title=$1
+year=$(date +'%y')
+
+if test x"$FULLNAME" = x; then
+  fatal_envvar FULLNAME 'This variable should be your full name'
+fi
+author="$FULLNAME"
+
+case "$EMAIL" in
+  (*@lrde.epita.fr) email="$EMAIL";;
+  (*)
+    if test x"$EMAIL" = x; then
+      stderr "EMAIL variable not set."
+    else
+      stderr "\`$EMAIL' is not a valid LRDE email address."
+    fi
+    email=`echo "$author" | tr 'A-Z' 'a-z' | tr ' ' '.'`
+    email="$email@lrde.epita.fr"
+    stderr "Is \`$email' your LRDE address? [yYnN]"
+    read answer || answer=n
+    case $answer in
+      ([yY]*) ;;
+      (*)
+        fatal_envvar EMAIL 'I was unable to guess your address, please set it.'
+        ;;
+    esac
+    ;;
+esac
+
+exepath=$(dirname $0)
+numbers_file=${exepath}/numbers.txt
+
+if ! test -f "$numbers_file"; then
+  stderr "Sorry, you need the full repository."
+  exit 1
+fi
+
+if ! svn update ${numbers_file} > /dev/null; then
+  echo "Error: Unable to update your working copy." 1>&2
+  exit 1
+fi
+
+num=$(
+  cat ${numbers_file} | sed -n "
+  /^$year\(..\).*/{s//\1/;h;};
+  \${x;s/^0\+//;p;}"
+)
+num=$(printf "%02d" $(($num + 1)))
+name=$year$num
+
+if test -e $name; then
+  echo "Error: $name: file (or directory) exists." 1>&2
+  exit 1
+fi
+
+# svn cat produce an error message in all cases but only have an exit
+# code set to 1 if the directory doesn't exist.
+if svn cat ${project}/trunk/$name 2> /dev/null; then
+  echo "Error: $name: directory exists on the repository." 1>&2
+  exit 1
+fi
+
+echo >> ${numbers_file} "
+$name $author
+     $title"
+svn commit -m "Report $name signaled in numbers.txt" ${numbers_file}
+
+
+svn mkdir -m "$name: new technical report" ${project}/trunk/$name
+
+# #### NOTE: At this point, we've worked on the repository but no directory
+# #### NOTE: has been created locally. I'd like to continue this way, and set
+# #### NOTE: the externals property remotely, but Subversion does not support
+# #### NOTE: this yet. So I have to checkout first.
+
+svn checkout ${project}/trunk/$name $name &&			\
+cd $name &&							\
+svn propset svn:externals "base ${project}/trunk/base
+share ${share}" . &&						\
+svn update
+
+ln -s base/common/base/makefile Makefile
+cat base/common/report.tex | sed > $name.tex "
+  s/@TITLE@/$title/g;
+  s/@NAME@/$name/g;
+  s/@YEAR@/$year/g;
+  s/@AUTHOR@/$author/g;
+  s/@EMAIL@/$email/g
+"
+chmod 644 $name.tex
+
+cat > makefile.inc <<EOF
+TEXINPUTS = ../share/styles:../share/bib
+TEXI2DVI = ../share/bin/texi2dvi
+EOF
+chmod 644 makefile.inc
+
+svn add $name.tex makefile.inc Makefile &&			\
+svn propset svn:keywords "LastChangedRevision" $name.tex &&	\
+svn ci -m "Created $name.tex skeleton."
+
+echo "----------------"
+echo "The directory \`$name' has been created."
+echo "Please update ${publis}/trunk/share/bib/csi.bib with:"
+echo "
+@TechReport{$USER.$year.seminar.SMALLSUBJECT,
+  author =      {$author},
+  title =       {{$title}},
+  institution = {EPITA Research and Development Laboratory (LRDE)},
+  year =        $(date +'%Y'),
+  url =         {http://publications.lrde.epita.fr/URLLRDE},
+  urllrde =     {URLLRDE},
+}
+"
+echo "----------------"

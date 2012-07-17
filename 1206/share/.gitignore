@@ -1,0 +1,10 @@
+*~
+auto
+*.log
+*.tmp
+
+/lrde.pdf
+/lrde.tex
+/lrde-private.pdf
+/lrde-private.tex
+/tmp.t2d

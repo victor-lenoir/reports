@@ -1,0 +1,88 @@
+2004-12-16  Didier Verna  <didier@lrde.epita.fr>
+
+	* report.tex: Add templates for \email and \www.
+
+2004-12-15  Didier Verna  <didier@lrde.epita.fr>
+
+	BACWARD INCOMPATIBLE CHANGE !!!
+
+	* report.tex: Modify \revision command syntax.
+
+2004-09-13  Didier Verna  <didier@lrde.epita.fr>
+
+	* report.tex: Changed keyword for SVN.
+
+2003-10-29  Didier Verna  <didier@lrde.epita.fr>
+
+	* report.tex: Added PRCS "Revision" keyword expansion line.
+	Added missing \date skeleton.
+
+2003-07-02  Didier Verna  <didier@lrde.epita.fr>
+
+	New architecture for `make dist':
+	* report.tex: New.
+	* makefile.ps: Moved to base/ps/makefile.
+	* makefile.pdf: Moved to base/pdf/makefile.
+	* makefile.common: Moved to base/makefile.
+	* ps/: Moved to base/.
+	* pdf/: Moved to base/.
+
+2003-06-25  Nicolas Burrus  <burrus_n@lrde.epita.fr>
+
+	* makefile.ps, makefile.pdf: cleanup.
+
+	* makefile.ps: support png format.
+	* makefile.pdf: support eps format.
+
+2003-06-25  Nicolas Burrus  <burrus_n@lrde.epita.fr>
+
+	* README: update.
+
+2003-06-24  Nicolas Burrus  <burrus_n@lrde.epita.fr>
+
+	* makefile.ps, makefile.pdf: do not use shell when possible.
+	* makefile.ps, makefile.pdf: call texi2dvi with --batch.
+
+2003-06-23  Nicolas Burrus  <burrus_n@lrde.epita.fr>
+
+	* common/makefile.ps, common/makefile.pdf: support a dedicated
+	directory for graphics.
+
+	* common/makefile.ps, common/makefile.pdf: add dependencies on bib
+	files.
+
+	* common/makefile.ps, common/makefile.pdf: find tex files
+	recursively for dependencies.
+
+	* common/makefile.pdf: support eps files.
+	* common/makefile.ps: support pdf files.
+
+	* common/makefile.pdf: use vectorial conversions for dia files.
+
+2002-09-10  David Lesage  <david@lrde.epita.fr>
+
+	* techrep.cls: delete tocdepth limitation to 1.
+
+2002-08-21  Nicolas Tisserand  <tisser_n@lrde.epita.fr>
+
+	* makefile.pdf: support for svg and jpg.
+
+	* makefile.ps: likewise.
+
+2002-08-20  david lesage  <david@lrde.epita.fr>
+
+	* makefile.ps: add support for dia files,
+	simplify some rules.
+
+	* makefile.pdf: likewise. Add cleaning of png files from
+	dia files.
+
+
+2002-07-23  Didier Verna  <didier@lrde.epita.fr>
+
+	* makefile.common: include makefile.inc.
+
+2002-06-19  Didier Verna  <didier@lrde.epita.fr>
+
+	* techrep.cls: use babel unconditionnally, select the appropriate
+	language for the two summaries.
