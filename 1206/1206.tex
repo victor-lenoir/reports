@@ -136,17 +136,22 @@ speaker factors and finally the third one is a streaming system using
 HMM and speaker factors.
 
 
-These three algorithms will be discussed and we'll test the performance
-of these methods thanks to a set of experiments on NIST-SRE 2010
-interview data which is a peculiar data for speaker
-diarization. Indeed we can have an a priori on the number of speakers and
-on the identity of one of the speaker so it's easier to obtain a
-segmentation.
+These three algorithms will be discussed and we'll test the
+performance of these methods thanks to a set of experiments on
+NIST-SRE 2008 summed data and NIST-SRE 2010 interview data which is a
+peculiar data for speaker diarization. Indeed we can have an a priori
+on the number of speakers and on the identity of one of the speaker so
+it's easier to obtain a segmentation.
 
-In this report only the algorithm using HMM and HMM is using the 2nd
+In this report only the algorithm using GMM and HMM is using the 2nd
 channel of the interview data.
 
 \chapter{Prerequisites}
+
+In this chapter, I will introduce a few notions useful to understand
+the algorithms and in which context we use a speaker diarization
+algorithm.
+
 \section{Voice Activity Detection}
 
 \subsection{Description}
@@ -268,13 +273,53 @@ data which is composed of two channels:
 With these two channels we would like to extract the speech segments
 of the speaker interviewed. In this problem the number of speakers is
 known, plus we have information on the interviewer identity using the
-2nd channel.
+2nd channel. The purpose of speaker diarization in our case is to
+select the segments of the interviewed speaker in the first channel.
 
-A simple solution for this problem would be to process a
-voice activity detection algorithm on both channels and then remove
-the segments of the 2nd channel from the 1st channel.
-% TODO: but... but no benchmark so fuck
+A simple solution for this problem would be to process a voice
+activity detection algorithm on both channels and then remove the
+segments of the 2nd channel from the 1st channel but it obtains bad
+result due to an echo of the interviewed speaker on the 2nd channel.
 
+\subsection{Context}
+
+\tikzstyle{cont}=[shape=rectangle,minimum
+  size=1.0cm,draw=blue!70,fill=blue!30,font=\small]
+
+\tikzstyle{contred}=[shape=rectangle,minimum
+  size=1.0cm,draw=red!70,fill=red!30,font=\small]
+
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8,font=\scriptsize]
+      \node[cont,initial] (s1) at (0,6) {Audio signal};
+      \node[cont] (s2) at (0,4) {Vector of features}
+      edge [<-] node[left] {Features extraction} (s1);
+      \node[cont] (s3) at (0,2) {Speech features}
+      edge [<-] node[left] {VAD} (s2);
+      \node[cont] (s4) at (0,0) {Speakers features}
+      edge [<-] node[left] {\textcolor{red}{Speaker Diarization}} (s3);
+      \node[cont] (s5) at (5,0) {Speaker features}
+      edge [<-] node[auto] {Select} (s4);
+      \node[cont] (s6) at (5,2) {Speaker Model}
+      edge [<-] node[right] {Modeling} (s5);
+      \node[cont] (s7) at (5,4) {Score}
+      edge [<-] node[right] {} (s6);
+      \node (s8) at (5,6) {}
+      edge [<-] node[right] {Decision} (s7);
+      \node (s8) at (8,4) {Speaker Model}
+      edge [->] node[right] {} (s7);
+    \end{tikzpicture}
+  \end{center}
+
+  In our system:
+  \begin{itemize}
+    \item Features extraction: 19 MFCCs, energy + their derivatives +
+      their accelerations;
+    \item Modeling: Estimate Identity-Vector (Ivector) for a speaker
+      (600-dim vector which represents the speaker);
+    \item Score: Cosine-Distance between 2 Ivectors;
+    \item Decision: Threshold the score.
+  \end{itemize}  
 \chapter{Speaker diarization using HMM/GMM}
 
 In this chapter, I will present a method using Hidden Markov Model
@@ -853,6 +898,10 @@ systems is reported in Table \ref{benchou}.\\
 
 From \ref{benchou}, we can see that the best results are obtained by the variatonal bayes approach with a viterbi re-segmentation in order to avoid 1s-segment.
 
+Note that there is no benchmark for the first HMM/GMM speaker
+diarization algorithm because it requires the interview data in order
+to work.
+
 \chapter{Conclusion}
 
 Speaker diarization consists in partitioning an input signal into
@@ -867,7 +916,7 @@ diarization using HMM and GMM only working on NIST interview data
 because using the two channels and having an a priori on the number of
 speakers.
 
-\paragraph{Achieved work} This report described and discussed the three different speaker diarization methods, from the features extraction to the final segmentation. The speaker diarization using HMM and GMM was implemented and tested on the NIST-SRE 2010 interview data.
+\paragraph{Achieved work} This report described and discussed the three different speaker diarization methods, from the features extraction to the final segmentation. The speaker diarization using HMM/GMM and the streaming system was implemented and tested on the NIST-SRE 2010 interview data.
 
 \paragraph{Future works} I still have to implement the variatonal bayes approach and the streaming system in order to do a set of experiments on the NIST-SRE 2010 interview data and compare the performance thanks to obtained DET curves.
 
