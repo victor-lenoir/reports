@@ -822,40 +822,36 @@ $$q_{ms} = \frac{q_{ms}^{'}}{\sum_{s_2=1}^{S}{q_{ms_2}^{'}}}$$%{\sum_{s^'=1}^{S}
 \paragraph{Disadvantages} This method required an Universal Background Model while the other methods don't. Furthemore it cannot be applied on-the-fly.
 \chapter{Benchmark}
 
-We use the LRDE speaker recognition system proposed to NIST-SRE 2010
-to evaluate speaker diarization system included in a speaker
-recognition process. The speaker recognition method operates on
-cepstral features, extracted using a 25ms Hamming window. 19 mel
-frequency cepstral coefficients together with log energy are
-calculated every 10 ms. Delta and double delta coefficients were then
-calculated using a 5 frame window to produce 60-dimensional feature
-vectors. This 60-dimensional feature vector was subjected to feature
-warping using a 3s sliding window. We remove no speech frame before
-the processing thanks to the speaker diarization/voice activity
-detection algorithms. We used a gender dependent UBMs containing 2048
-Gaussians (more detail about speaker recognition system can be found
-in \cite{dehak.icassp.2011}).\\
+To compare the Streaming system and the Variatonal Bayes system, a set
+of experiments were carried out on the extended trials of the summed
+data of the NIST-SRE 2008 by \cite{DIAFACT}.
 
-All our experiments were carried out on the extended trials of the
-interview data of the NIST 2010 SRE. We use only telephone and
-microphone conversation data of 5 minutes. A comparison of the results
-using our two speaker diarization systems with the original VAD system
-is reported in Table %\ref{gmmbenchmale}
-.The original VAD system uses
-an Hungarian speech recognizer to label speech frame
-%\cite{il y a une reference a citer}.
-This system was provided by Brno University.\\
 
-To estimate the quality of a Voice Activity detection/Speaker
-diarization algorithm we connect the speaker diarization algorithms to
-the rest of the speaker recognition process.\\ To evaluate performance
-of a speaker recognition, we plot the DET (Detection Error Tradeoff)
-curve (\cite{DET}) which is the miss probability in function of the
-false alarm probability.\\ An ideal DET curve intersects a point with
-very low false alarm probability and very low miss probability.
+\paragraph{Diarization Error Rate (DER)} Percentage of miss-classified segments obtained using a reference segmentation provided by NIST.
 
-%\section{Speaker diarization using HMM/GMM}
-%\section{Speaker diarization using Variational Bayes approach}
+A comparison of the results using the two speaker diarization
+systems is reported in Table \ref{benchou}.\\
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|l|c|r|}
+    \hline
+    \textbf{Algorithm} & \textbf{mean DER(\%)} \\
+    \hline
+    Streaming system & 5.8\\
+    \hline
+    Streaming system + Viterbi & 4.6\\
+    \hline
+    Variatonal Bayes & 9.1\\
+    \hline
+    Variatonal Bayes + Viterbi & 1.9\\
+    \hline
+  \end{tabular}
+  \label{benchou}
+  \caption{Benchmark on NIST-SRE 2008 summed data}
+\end{figure}
+
+From \ref{benchou}, we can see that the best results are obtained by the variatonal bayes approach with a viterbi re-segmentation in order to avoid 1s-segment.
 
 \chapter{Conclusion}
 
