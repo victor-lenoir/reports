@@ -136,7 +136,7 @@ speaker factors and finally the third one is a streaming system using
 HMM and speaker factors.
 
 
-These three algorithms will be discussed and we'll test the
+These three algorithms will be discussed and we will measure the
 performance of these methods thanks to a set of experiments on
 NIST-SRE 2008 summed data and NIST-SRE 2010 interview data which is a
 peculiar data for speaker diarization. Indeed we can have an a priori
@@ -182,11 +182,11 @@ example white noise is a noise with a flat spectrum.
 \subsection{Cepstral Feature}
 In order to detect speech in an audio recording, we have to extract
 some features to analyse them. In most of speech recognition's
-algorithms, we promote cepstral coefficients unlike raw signal because
+algorithms, we promote cepstral coefficients rather than raw signal because
 the cepstral coefficients have more meanings in speech
 recognition.\\ The cepstral coefficients are obtained by doing a
 Fourier Transformation. Therefore we have to define a window in order
-to process the signal to do a short-term analysis and thus keep a time
+to process the signal using a short-term analysis and thus keep a time
 data to possibly do the segmentation. (Figure \ref{extractmfcc})\\\\ A
 feature vector is extracted for each placement of that window. The Mel
 Frequency Cepstral Coefficients (MFCCs Figure
@@ -224,7 +224,7 @@ which highlight the difference between speech and noise.\\
     signal\\ \hline
   \end{tabular}
 \end{center}
-The relevance of each features depend on SNR (Signal to Noise
+The relevance of each features depends on SNR (Signal to Noise
 ratio).\\ Figures \ref{energyplot}, \ref{sfmplot} and
 \ref{signalflatness} show the plotting of a few features computed on
 an extremely white noised signal. (signal is in blue and feature in
@@ -254,7 +254,7 @@ For example we can see that for white noised signal a good feature
 would be the inverse of signal flatness (Figure \ref{signalflatness})
 because the feature is low when there is white noise and high when
 someone is speaking. On the contrary energy (Figure \ref{energyplot})
-is affected a lot by the white noised and doesn't cope well with it.
+is affected a lot by the white noise and doesn't cope well with it.
 
 \section{Speaker diarization}
 Speaker diarization is the process of partitioning an input speech
@@ -265,20 +265,20 @@ we determine the number of speakers in a segment using the Bayesian Information
 Criterion (BIC).
 
 In our case, the speaker diarization is done on NIST-SRE 2010 interview
-data which is composed of two channels:
+data composed of two channels:
 \begin{itemize}
 \item Channel 1: The interviewer and the interviewed speaker
 \item Channel 2: The interviewer only
 \end{itemize}
 With these two channels we would like to extract the speech segments
-of the speaker interviewed. In this problem the number of speakers is
+of the interviewed speaker. In this problem the number of speakers is
 known, plus we have information on the interviewer identity using the
 2nd channel. The purpose of speaker diarization in our case is to
 select the segments of the interviewed speaker in the first channel.
 
 A simple solution for this problem would be to process a voice
 activity detection algorithm on both channels and then remove the
-segments of the 2nd channel from the 1st channel but it obtains bad
+segments of the 2nd channel from the 1st channel but it produces bad
 result due to an echo of the interviewed speaker on the 2nd channel.
 
 \subsection{Context}
@@ -312,17 +312,17 @@ result due to an echo of the interviewed speaker on the 2nd channel.
   \end{center}
 
   In our system:
-  \begin{itemize}
-    \item Features extraction: 19 MFCCs, energy + their derivatives +
+  \begin{description}
+    \item[Features extraction] 19 MFCCs, energy + their derivatives +
       their accelerations;
-    \item Modeling: Estimate Identity-Vector (Ivector) for a speaker
+    \item[Modeling] Estimate Identity-Vector (Ivector) for a speaker
       (600-dim vector which represents the speaker);
-    \item Score: Cosine-Distance between 2 Ivectors;
-    \item Decision: Threshold the score.
-  \end{itemize}  
+    \item[Score] Cosine-Distance between 2 Ivectors;
+    \item[Decision] Threshold the score.
+  \end{description}  
 \chapter{Speaker diarization using HMM/GMM}
 
-In this chapter, I will present a method using Hidden Markov Model
+In this chapter, we present a method using Hidden Markov Model
 (HMM) and Gaussian Mixture Model (GMM) to solve the speaker
 diarization problem. This solution for the speaker diarization problem
 is quite simple and works only when the number of speakers is known
@@ -331,7 +331,7 @@ and noise model.
 
 
 Its principle is to build a GMM for the noise and a GMM for each of
-the two speakers and then do a Viterbi algorithm on a 3 hidden
+the two speakers then apply a Viterbi algorithm on a 3 hidden
 states-HMM to find the best path/segmentation (the likeliest path).
 
 
@@ -342,10 +342,10 @@ the Viterbi algorithm as a solution for our problem.
 \section{HMM using GMM}
 
 Hidden Markov Model (HMM) is a widely used statistical Markov model in
-speech recognition and signal processing in general. It can modeled
+speech recognition and signal processing in general. It can model
 hidden states which generate observations with a certain likelihood
 and using the Viterbi algorithm we can retrieve the best sequence of
-hidden states which emits the observations.
+hidden states producing the observations.
 
 
 In our case we have a 3 hidden states HMM (Figure \ref{hmm}):
@@ -430,16 +430,16 @@ of observations so we can approximate this complexity by $O(F)$.
   \label{viter}
 \end{figure}
 
-\paragraph{Implementation} The implementation of this algorithm was made in C++ so
-with a large sequence of observations the probability of the path was
+\paragraph{Implementation} The implementation of this algorithm was made in C++, so
+with a large sequence of observations the path probability was
 equal to 0 due to precision error. Since we are only interested in
 the likeliest path but not its likelihood a workaround would be to
-normalize after each observations the previous likelihood.
+normalize  the previous likelihood after each observations.
 
 \section{Gaussian Mixture Model}
 
 Obviously in practice, we don't only have 2 types of possible
-observations, we can theoretically have an infinity number of
+observations, we can theoretically have an infinite number of
 different observations.
 
 In this case, we have to learn a probability distribution for each of
@@ -449,7 +449,7 @@ observation.
 In this work we choose GMMs to represent these distributions.
 
 Gaussian Mixture Model (GMM) is a probabilistic model used to
-represent a probability distribution (see Figure \ref{gmmschem} )
+represent a probability distribution (see Figure \ref{gmmschem})
 defined as below:\\
 $$ p(x|\lambda) = \sum_{i=1}^{M} w_i g(x|\mu_i,\Sigma_i)$$
 Where\\
@@ -466,7 +466,7 @@ Where:
 \item $\mu_i$ is the mean vector of the $i^{th}$ gaussian component;
 \item $\Sigma_i$ is the covariance matrice of the $i^{th}$ gaussian
   component;
-\item $D$ is the dimension of the $x$ data vector.
+\item $D$ is the dimension of the data vector $x$.
 \end{itemize}
 In order to find the GMM parameters, we use the Linde-Buzo-Gray (LBG)
 and the Expectation Maximization algorithm (\cite{EM}). The EM
@@ -475,7 +475,7 @@ given vectors of features.\\ In our case, the $x$ data vector is a
 60-dim cepstral feature vector and we use this model to represent the
 probability distribution for each of the hidden states of our
 HMM.\\ The gaussians we use have diagonal covariance matrix $\Sigma_i$
-because it's faster to compute and has less inversibility problem for
+because it's faster to compute and has less inversibility problems for
 the covariance matrix.
 
 \begin{figure}[H]
@@ -497,7 +497,7 @@ diarization problem:
 \item We can have a segmentation of the interviewer thanks to 2nd
   channel.
 \end{itemize}
-This enable us to find the parameters of the interviewer GMM with the
+This allows us to find the parameters of the interviewer GMM with the
 2nd channel by processing the voice activity detection (VAD) algorithm
 described in the paper of \cite{CRIM} in order to remove the
 interviewer speech segment from the first channel and then process one more
@@ -540,8 +540,8 @@ parameters: the transition probabilities are fixed as shown in Figure
 
 In our case, an observation is a vector of 60 features: the energy, 19
 cepstral coefficients, their derivative and their acceleration.  When
-the features are extracted from the channel 1 we only have to process a
-Viterbi algorithm on the extracted observations with our HMM to find
+the features are extracted from the channel 1 we only have to apply a
+Viterbi algorithm on the extracted observations using our HMM to find
 the likeliest hidden states path.
 
 We then obtain a segmentation: speaker1/speaker2/noise.
@@ -581,10 +581,10 @@ sequence of feature vectors.
 It is hard to see if the segmentation of figure \ref{sigc2} is well
 done because the two speakers talk at the same time in the beginning
 of the signal. This is one of the disadvantage of this algorithm, it
-makes hard decision and assigns segment to only one speaker, so if
-there is multiple speakers at the same time it will result in a
-fragmented segmentation. However we can see that at the end of the signal
-the interviewer is not talking which fit to the reality.
+makes hard decision and assigns segment to only one speaker. If
+there are multiple speakers at the same time it will result in a
+fragmented segmentation. However, we see that at the end of the signal, 
+the interviewer is not talking which fits to the reality.
 
 \section{Discuss}
 
@@ -595,10 +595,9 @@ the first channel. We then only have to apply a VAD on the 1st channel
 to obtain the final segmentation.
 
 \paragraph{Advantages}
-This algorithm is less naive than a double VAD (see Figure
-\ref{pseudocodenaive}) and it takes into account both of the identity
-of the two speakers during the segmentation while the naive algorithm
-doesn't.
+The HMM/GMM algorithm is less naive than a double VAD (see Figure
+\ref{pseudocodenaive}) and takes into account both of the two speakers identity during the segmentation while the naive algorithm
+does not.
 
 \begin{figure}[H]
   \begin{lstlisting}[frame=single]
@@ -613,24 +612,24 @@ doesn't.
 
 \paragraph{Disadvantages}
 
-This speaker diarization algorithm can only work on the NIST-SRE
-interview data since we need to know the number of speakers and the
-GMMs parameters for each speakers. The other disadvantages of this
-algorithm are the same as the voice activity algorithm used (see paper
-of \cite{CRIM}): we make the asumption that there is at least 10\% of
-speech in the signal. If there is no speech the procedure will
-fail.\\ Furthemore this algorithm can not be applied on-the-fly unless
-the parameters of the 3 GMMs are already fixed.\\
+This speaker diarization algorithm can only be applied on the NIST-SRE
+interview data since we need to know the number of speakers and be
+able to compute the GMMs parameters for each speakers. The other
+disadvantages of this algorithm are the same as the voice activity
+algorithm used (\cite{CRIM}): we make the asumption that
+there is at least 10\% of speech in the signal. If there is no speech
+the procedure will fail.\\ Furthemore this algorithm can not be
+applied on-the-fly unless the parameters of the 3 GMMs are already
+fixed.\\
 
 \chapter{Speaker diarization using Variational Bayes approach}
 
-In this chapter, I will present the Variational Bayes (VB) approach for
+In this chapter, we present the Variational Bayes (VB) approach for
 speaker diarization. Furthermore I will quickly introduce one other
 speaker diarization algorithm: a streaming system.
 
 These 2 algorithms are presented in the paper of \cite{DIAFACT} and
 are both using factor analysis.
-
 For these algorithms a voice activity detection has already been
 processed along the signal so there is only remaining speech segments.
 
@@ -676,7 +675,7 @@ speakers modeled by a gaussian distribution.
 
 \subsection{Algorithm}
 
-This technique performs a diarization by slice of about one second
+This technique performs a diarization on slices of about one second
 without requiring the following slices, that's why it is called the
 streaming system.
 
@@ -685,7 +684,7 @@ energy, their derivative and their acceleration. We then perform a
 factor analysis on the whole slice in order to obtain a stream of 20
 speaker factors.  To determine the number of speakers talking in the
 slice, a Bayesian Information Criterion (BIC) is used.  Once this step
-is done we do a clustering of the obtained stream of speaker factors
+is done we cluster the resulting stream of speaker factors
 with the purpose of finding the parameters of the multivariate
 gaussians associated to each speakers.
 
@@ -717,7 +716,7 @@ slice segmentation by the Viterbi algorithm.
 \end{figure}
 
 There is still a problem to solve: indeed we have local segmentations
-and we can't decide for the moment whether it's the same speakers between
+and we can't decide whether it's the same speakers between
 the slices.
 
 To solve this problem we have to define a 256-component GMM for each
@@ -737,7 +736,7 @@ then a new model is built.
 
 Unlike other described methods, this one is fully probabilistic. We
 don't make hard decision on a segment.\\ This method required an
-Universal Background Model (UBM) which is a huge GMM computed with a
+Universal Background Model (UBM) which is a 2048-components GMM computed with a
 large number of speech files.
 
 \subsection{Variatonal bayesian methods}
@@ -751,8 +750,8 @@ In our case the set of unobserved variables is $\{Y,I\}$ where $Y$
 specifies the location of speakers in the space of speaker factors and
 $I = \{i_1, i_2, ..., i_m\}$ the assignment of segments to speakers:
 $i_{ms} = 1$ if speaker $s$ is talking in segment $m$, $i_{ms} = 0$
-otherwise.  The segment posteriors is $q_{ms}$ and give the
-probability of the segment $m$ to be associated to the speaker $s$\\\\
+otherwise.  The segment posteriors are $q_{ms}$ and give the
+probability of the segment $m$ to be associated with the speaker $s$\\\\
 
 
 The idea here is to find a good approximation of the probability of
@@ -785,9 +784,9 @@ Where:
 With one and only one non-zero $i_{ms}$ for each segment $m$.  We can
 easily see that this maximization problem can be solved by setting the
 $i_{ms}$ associated with the highest $q_{ms}$ probability to 1 so the
-lowest probabilities will be set to $1$ ($q_{ms}^0$). Hence the solution for this
-diarization problem is for each segment $m$ the speaker talking is
-given by:
+lowest probabilities will be set to $1$ ($q_{ms}^0$). Hence the
+identity of the speaker talking in this diarization problem for each
+segment $m$ is given by:
 \begin{equation}\label{eq6}
   \arg\max_{s}(q_{ms})
 \end{equation}
@@ -843,7 +842,7 @@ The speaker posterior of $s$ is represented by a normal distribution
 of mean $a_s$ and covariance matrix $\Lambda_s^{-1}$:
 $$P(Y|X) \simeq Q(Y) = \prod_{s=1}^{S}\mathcal{N}(y_s|a_s,\Lambda_s^{-1})$$
 
-Let $V$ be the eigenvoice of the extracted speaker factors $X$ and
+Let $V$ be the eigenvoice of the extracted speaker factors, $X$ and
 $\Sigma$ be the $CF \times CF$ dimensional covariance matrix whose
 diagonal blocs are $\Sigma_1, ..., \Sigma_C$ where $C$ is the number
 of components of the UBM, $F$ is the speaker factors dimension and
@@ -854,18 +853,18 @@ $$a_s = \Lambda_s^{-1}V^*\Sigma^{-1}F(s)$$
 
 \subsubsection{Update segment posterior}
 Let $\pi_s = \frac{1}{S}$ be the prior probability that a speaker $s$
-is talking then for each segment $m$ and speaker $s$ we define
+is talking. Then for each segment $m$ and speaker $s$ we define
 $q_{ms}^{'}$ as below:
 
 $$q_{ms}^{'} = ln(\pi_sP(x_m|a_s)) - \frac{1}{2}tr(V^*N_m\Sigma^{-1}V\Lambda_s^{-1})$$
 
-then the update formula for the segment posteriors is:
+The update formula for the segment posteriors is:
 $$q_{ms} = \frac{q_{ms}^{'}}{\sum_{s_2=1}^{S}{q_{ms_2}^{'}}}$$%{\sum_{s^'=1}^{S}q_{ms}^{'}}$$
 \subsection{Discuss}
-\paragraph{Advantages} This method is fully probabilistic and is really effective compared to the other described methods. Plus it uses 300 speaker factors as in speaker recognition state-of-the-art. Moreover the convergence is guaranteed.
+\paragraph{Advantages} This method is fully probabilistic and is really effective compared to the previously described methods. Plus it uses 300 speaker factors as in speaker recognition state-of-the-art. Moreover the convergence is guaranteed.
 
 \paragraph{Disadvantages} This method required an Universal Background Model while the other methods don't and it cannot be applied on-the-fly.
-Furthermore this algorithm alone provides a raw segmentation of 1sec-segments so it requires to resegment using Viterbi.
+Furthermore, this algorithm alone provides a raw segmentation of 1sec-segments so it requires to resegment using Viterbi.
 
 \chapter{Benchmark}
 
@@ -920,7 +919,7 @@ speakers.
 
 \paragraph{Achieved work} This report described and discussed the three different speaker diarization methods, from the features extraction to the final segmentation. The speaker diarization using HMM/GMM and the streaming system was implemented and tested on the NIST-SRE 2010 interview data.
 
-\paragraph{Future works} I still have to implement the variatonal bayes approach and in order to do a set of experiments on the NIST-SRE 2010 interview data and compare the performance thanks to obtained DET curves.
+\paragraph{Future works} We still have to implement the variatonal bayes approach and in order to do a set of experiments on the NIST-SRE 2010 interview data and compare the performance thanks to obtained DET curves.
 
 \bibliography{1206} \nocite{*}
 
