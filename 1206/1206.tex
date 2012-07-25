@@ -108,7 +108,7 @@ A copy of the license is provided in the file COPYING.DOC.
 \chapter{Introduction}
 
 Speaker recognition is a long process. It has multiple problematics
-and required pre-processes:
+and requires pre-processes:
 \begin{enumerate}
 \item noise filters;
 \item features extraction;
@@ -149,8 +149,8 @@ channel of the interview data.
 \chapter{Prerequisites}
 
 In this chapter, I will introduce a few notions useful to understand
-the algorithms and in which context we use a speaker diarization
-algorithm.
+the algorithms and in which context we use the speaker diarization
+algorithms.
 
 \section{Voice Activity Detection}
 
@@ -261,10 +261,10 @@ Speaker diarization is the process of partitioning an input speech
 file into segments assigned to different speakers. This problem
 consists in determining the number of speakers in a given speech file
 and in partitioning this speech file into segments.  Most of the time
-we determine ths number of speakers in a segment using the Bayesian Information
+we determine the number of speakers in a segment using the Bayesian Information
 Criterion (BIC).
 
-In our case, the speaker diarization is done on NIST-SRE10 interview
+In our case, the speaker diarization is done on NIST-SRE 2010 interview
 data which is composed of two channels:
 \begin{itemize}
 \item Channel 1: The interviewer and the interviewed speaker
@@ -920,7 +920,7 @@ speakers.
 
 \paragraph{Achieved work} This report described and discussed the three different speaker diarization methods, from the features extraction to the final segmentation. The speaker diarization using HMM/GMM and the streaming system was implemented and tested on the NIST-SRE 2010 interview data.
 
-\paragraph{Future works} I still have to implement the variatonal bayes approach and the streaming system in order to do a set of experiments on the NIST-SRE 2010 interview data and compare the performance thanks to obtained DET curves.
+\paragraph{Future works} I still have to implement the variatonal bayes approach and in order to do a set of experiments on the NIST-SRE 2010 interview data and compare the performance thanks to obtained DET curves.
 
 \bibliography{1206} \nocite{*}
 
