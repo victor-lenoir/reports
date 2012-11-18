@@ -1,0 +1,40 @@
+                                                              -*- outline -*-
+
+* Numérotation des rapports:
+* ==========================
+** Le choix d'un nouveau numéro devrait être automatique.
+
+* Distribution:
+* =============
+
+Quand on fait un make dist, ou plus généralement quand un rapport est terminé,
+on devrait modifier les externals de base pour pointer sur une révision taggée
+de ce répertoire. Ainsi, base peut continuer à évoluer snas pour autant
+compromettre la (re)compilation des anciens rapports.
+
+* Les styles, bibliographie et compagnie:
+* =======================================
+Si on veut pouvoir utiliser des bibliographies communes au labo (mais aussi
+des styles, des bibstyles et autres joyeusetées) il faudra décider d'une
+politique précise.
+
+Pour l'instant, j'ai vu des .bib dans ~prcs/tex/bib/. C'est n'importe quoi.
+D'abord, ça devrait se trouver dans ~lrde/share/tex/(sty, cls, bib, etc), mais
+en plus, dans la perspective de distribuer nos sources, ça compliquera les
+choses si les gens veulent vraiment les compiler.
+
+La solution que je vois, c'est d'avoir une arborescence tex dans l'archive
+directement. On devrait même avoir en fait un seul projet PRCS contenant
+toutes les publis. Un truc comme ça:
+
+publis/conférences/
+       revues/
+       rapports/
+       tex/
+       tex/cls
+       tex/sty
+       tex/bib
+
+et ainsi de suite.
+
+Enfin, moi, skeu j'en dis (ça ou peigner la girafe...).

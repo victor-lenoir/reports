@@ -1,0 +1,611 @@
+9901 Thierry Géraud and Alexandre Duret-Lutz.
+     Composants génériques de calcul scientifique.
+
+9902 Thierry Géraud, Yoann Fabre, Dimitri Papadopoulos-Orfanos,
+     and Jean-François Mangin.
+     Towards a Total Reusability of Image Processing Algorithms.
+
+9903 Alexandre Duret-Lutz and Thierry Géraud.
+     Patrons de conception statiques pour la programmation générique en C++.
+
+0001 Alexandre Duret-Lutz and Thierry Géraud
+     Improving Object-Oriented Generic Programming
+
+0201 Quôc Peyrot
+     Watermarking en domaine spatial
+
+0202 Clément Faur
+     Watermarking using perceptual modeling
+
+0203 Raphaël Poss
+     Techniques de programmation C++
+
+0204 Emmanuel Turquin
+     Towards fast image-based rendering of volume data
+
+0205 Jean-Sébastien Mouret
+     Visual Programming / Vishnu preliminaries
+
+0206 Ignacy Gawedzki
+     Color image segmentation
+
+0207 Ignacy Gawedzki
+     Optical music scores recognition
+
+0208 Yann Regis-Gianas
+     Multi-Paradigm Programming and Genericity
+
+0209 Yann Regis-Gianas
+     A modular mixins modules system
+
+0210 Robert Anisko
+     Towards Automatic Partial Evaluation for the C++ Language
+
+0211 David Lesage
+     Metamorpher:a structural design pattern
+
+0212 Nicolas Burrus
+     Safe and efficient data types in C++
+
+0213 Nicolas Tisserand
+     Tools for C++ language manipulations
+
+0214 Quoc Peyrot
+     Pattern recognition: restoration of old films using morphological
+     operators
+
+0215 Jean-Sébastien Mouret
+     Visual Programming : Vishnu part two
+
+0216 Astrid Wang
+     User-friendly and secure initializations in C++
+
+0217 Robert Anisko
+     Program Transformation and the C++ Language
+
+0218 Emmanuel Turquin
+     Wavelets and their implementation in Olena
+
+0219 Ignacy Gawedzki
+     Theory of objects and application to the C++ language
+
+0220 Maxime Rey
+     Grammar Inference and its implementation inside Vaucanson
+
+0301 Astrid Wang
+     Snakes
+
+# Removed. It was a seminar bogusly integrated into the techreps. -- dvl
+# 0302	   Youssef El Fassy Fihry
+#	   Introducing genericity
+
+0303 Niels Van Vliet
+     Image segmentation applied to cytology
+
+0304 Thomas Claveirole
+     Smart Automaton implementations
+
+0305 Loic Fosse
+     DSL on automatons
+
+0306 Sylvain Berlemont
+     Combinatorial map
+
+0307 Nicolas Burrus & David Lesage
+     Evidence theory
+
+0308 Jean-Baptiste Mouret
+     Curvilinear object extraction
+
+0309 Valentin David
+     Overloading in Tiger with Stratego
+
+0310 Robert Anisko, Valentin David, Clément Vasseur
+     Program Transformation and the C++ Language
+
+0311 Benoit Perrot
+     Tasks Graph And Data Dependencies
+
+0401 Thomas Claveirole
+     An overview of Vaucanson.
+
+0402 Julien Roussel
+     Transformers: C++ type checking.
+
+0403 Clément Vasseur
+     Code generator generators
+
+0404 Giovanni Palma, Van Vliet Niels.
+     Color image segmentation.
+
+0405 Valentin David
+     Attributes for disambiguation.
+
+0406 Loïc Fosse
+     Dynamic use of statically typed libraries
+
+0407 Nicolas Pouillard
+     Extending SDF.
+
+0408 Simon Odou
+     Image restoration by deconvolution.
+
+0409 Damien Thivolle
+     Galaxy images classification.
+
+0410 Nicolas Despres
+     C++ transformations panorama.
+
+0411 Olivier Gournet
+     Progress in C++ source preprocessing.
+
+0412 Sarah O'Connor
+     Implementation of transducers in Vaucanson.
+
+0413 Louis-Noel Pouchet
+     An interpreter for Vaucanson.
+
+0501 Simon Odou
+     Images taxonomy and modelisation.
+
+0502 Damien Thivolle
+     Writing canvas in Olena.
+
+0503 Sarah O'Connor
+     Composition of transducers.
+
+0504 Michael Cadilhac
+     Cover Automata for Finite Languages.
+
+0505 Guillaume Guirado
+     APMC distribution method.
+
+0506 Louis-Noel Pouchet
+     Toward improvements of Vaucanson modeling.
+
+0507 Florent Terrones
+     From an expression to the original automaton.
+
+0508 Robert Bigaignon
+     Computing the regular language recognized by an automaton.
+
+0509 Thomas Kielbus
+     Overview of Bayesian Networks
+
+0510 Helene Baraud
+     Modelling of an Atomic-Broadcast protocol Using "Reactives Modules"
+
+0511 Nicolas Pouillard
+     Panorama of techniques to combine elegance with efficiency.
+
+0512 Olivier Gournet
+     Attribute grammar in Stratego/XT
+
+0513 Nicolas Desprès
+     Automatic regression benchmark system
+
+0514 Johan Oudinet
+     Introduction to Hidden Markov Models
+
+0516 Alexandre Borghi
+     Attribute grammars - Comparison between techniques.
+
+0517 Christophe Berger and Nicolas Widynski
+     Using connected operators to compute image components
+
+0518 Louis-Noel Pouchet
+     Reflexions on the design of an automata manipulation library.
+
+0519 Sarah O'Connor
+     Transducers in Vaucanson.
+
+0601 Nicolas Desprès
+     Automatic performance monitoring tools
+
+0602 Nicolas Pouillard and Damien Thivolle
+     Dynamization of C++ Static Libraries
+
+0603 Christophe Berger
+     Image Taxonomy in Olena
+
+0604 Robert Bigaignon, Michael Cadilhac and Florent Terrones
+     Remodeling Vaucanson
+
+0606 Guillaume Lazzara
+     Automata and performances
+
+0607 Guillaume Guirado
+     Distributed BDDs
+
+0608 Charles-Alban Deledalle
+     Speaker verification
+
+0609 Neri Nicolas
+     Continuous-time Markov chains in the presence of uncertainties.
+
+0610 Thomas Moulard
+     Conception of a static object language : an overview of SCOOL.
+
+0611 Widynski Nicolas
+     Real time segmentation
+
+0612 Samuel Charron
+     Distributed DDDs
+
+0613 Jean-Philippe Garcia Ballester
+     Qualitative approximate probabilistic model-checking.
+
+0614 Thomas Largillier
+     CPP-UNCPP
+
+0615 Renaud Durlin
+     Context-free grammars and semantics disambiguation
+
+0616 Nicolas Pierron
+     Attribute grammar semantic
+
+0617 Johan Oudinet
+     Search Engine Ranking
+
+0618 Jeremy Marc
+     Genetic algorithms and corewar
+
+0619 Quentin Hocquet
+     Scool transformation towards C++
+
+0620 Benoit Sigoure
+     eXtended Reactive Modules
+
+0621 Christophe Berger
+     Fast Level Lines Transform (FLLT) algorithm
+
+0622 Alexandre Borghi
+     Parallel image processing
+
+0623 Widynski Nicolas
+     Blood vessal extraction in 3D images
+
+0700 Guillaume Lazzara
+     boosting-vaucanson
+
+0701 Bigaignon Robert
+     Introducing the TAF-Kit
+
+0702 Nicolas Pierron
+     Formal Definition of Disambiguation with Attribute Grammars
+
+0703 Benoit `Tsuna' Sigoure
+     Centaur: An infrastructure for C++ transformation with Transformers
+
+0704 Nicolas Neri
+     Learning Models for Probabilistic Model-Checking
+
+0705 Charles-alban Deledalle
+     Factor analysis based channel compensation in speaker verification
+
+0706 Charles Melin and Julien Ramakichenin
+     LRDE's Speaker Verification Framework
+
+0707 Geoffroy Querol
+     Selective approach and fusion for speaker verification evaluation.
+
+0708 Samuel Charron
+     A Generic Decision Diagrams Library.
+
+0709 Renaud Durlin
+     Semantics Driven Disambiguation.
+
+0710 Thomas Moulard
+     C++ container library with the SCOOP paradigm
+
+0742 Quentin Hocquet and Benoit Sigoure
+     revCPP: a reversible C++ PreProcessor
+
+0743 Vivien Delmon
+     Generic epsilon-removal
+
+0744 Florian Lesaint
+     XML Proposal and its application in Vaucanson
+
+0745 Antoine Leblanc
+     Efficient algorithmic methods for Nash equilibria computation
+
+0746 Nicolas Ballas
+     Software engineering in Olena Core
+
+0747 Florian Queze
+     Tools for Attribute Grammars manipulation in Transformers
+
+0748 Alexandre Abraham
+     ConceptC++ study and possible integration in SCOOP
+
+0749
+     scool
+
+0750 William Caldwell
+     Study of Some Performance Issues in C and Common Lisp
+
+0752
+     Parallélisme et libpapa
+
+0753 Ugo Jardonnet
+     Canvases for Morphological Algorithms
+
+0754 Didier
+     Unknown
+
+0755 Guillaume Lazzara
+     Boosting Vaucanson's genericity
+
+0756 Geoffroy Querol
+     SVM-MLLR for multi-speaker verification systems score fusion
+
+0757 Charles-alban Deledalle
+     SVM Kernel Combining System for Speaker Verification
+
+0758 Nicolas Neri
+     Transfinite Chomp
+
+0759 Guillaume Leroi
+     Synchronized Transducers
+
+0760 Samuel Charron
+     Homolib
+
+0761 Thomas Moulard
+     An overview of SCOOP, a static object-oriented paradigm
+
+0801 Nicolas Pierron and Benoit Sigoure and Akim Demaille and Renaud Durlin
+     Automatic Attribute Propagation for Modular Attribute Grammars
+
+0802 Renaud Durlin
+     Semantics Driven Disambiguation: A comparison of different approaches
+
+0803 Matthieu Garrigues
+     Stage de traitement d'image au LRDE
+
+0804 Guillaume Duhamel
+     Stage de traitement d'image au LRDE
+
+0805 Simon Nivault
+     Stage de traitement d'image au LRDE
+
+0806 Etienne Folio
+     Distance Transform
+
+0807 Damien Lefortier
+     Translation of an extended LTL into TBGA in Spot.
+
+0808 Ugo Jardonnet
+     Fast Image Registration
+
+0809 Caroline Vigouroux
+     Software engineering in Milena values
+
+0810 Vivien Delmon
+     Rational Expression Parser
+
+0811 Warren Seine
+     c++ template disambiguation with Transformers Attribute Grammars
+
+0812 Nicolas Ballas
+     Image taxonomy in Milena
+
+0813 Vincent Ordy
+     Implementing a C++ extension: "class namespaces"
+
+0814 Matthieu Garrigues
+     Fast Level Line Transform
+
+# Removed.
+# 0815 Maxime Van-Noppen
+#     --help
+
+0816 Maxime Van-Noppen
+     SCOOL: Generic programming and concepts
+
+0817 Guillaume Sadegh
+     A Promela front-end for Spot
+
+0818 Florian Lesaint
+     FSMXML and its application in Vaucanson
+
+0819 Antoine Legrand
+     Generalized Linear Discriminant Sequence for Speaker Verification
+
+0820 Jimmy Ma
+     Boosting Vaucanson's Iterators
+
+0821 Alexandre Abraham
+     Topological Watershed
+
+0822 Florent D'Halluin
+     Yet Another Vaucanson GUI
+
+0823 Cedric Raud
+     Centaur: A generic framework simplifying C++ transformation
+
+0824 Jerome Galtier
+     Improving Vaucanson's transducers composition algorithm
+
+0825 Florian Queze
+     C++ Program Slicing with Transformers
+
+0826 Antoine Leblanc
+     Alternate Fictitious Play study and implementation
+
+# Removed.
+# 0827 Warren Seine
+#      test
+
+# Removed.
+# 0828 Warren Seine
+#      toto
+
+0829 Nicolas Ballas
+     Properties in Milena
+
+0830 Vivien Delmon
+     Automata Reduction
+
+0831 Ugo Jardonnet
+     igr-reco
+
+0832 Matthieu Garrigues
+     Tarjan Union-Find Algorithm and connected operators
+
+0833 Florian Lesaint
+     Synchronous relations in Vaucanson
+
+0834 Jimmy Ma
+     Automata in Natural Language Processing
+
+0835 Alexandre Abraham
+     Morphology on color images
+
+0836 Florian Queze
+     Transformers: toward the end of the pipeline.
+
+0837 Antoine Leblanc
+     Efficiency comparison between \emph{Fictitious Play} and \emph{Alternate Fictitious Play} algorithms on the restricted set of zero-sum games
+
+0901 Vincent Ordy
+     Adding Contracts to C++ with Transformers
+
+0902 Florent D'Halluin
+     Performance analysis in large C++ projects
+
+0903 Guillaume Sadegh
+     Complementing B\"uchi Automata
+
+0904 Warren Seine
+     An implementation of the C++ container library with SCOOL
+
+0905 Alex Hamelin
+     Property based class hierarchy of Vaucanson's Algebra module
+
+0906 Loic Denuziere
+     Climb: a dynamic approach to image processing
+
+0907 Etienne Folio
+     Histograms
+
+0908 Samuel Da Mota
+     Nondeterminisation of alternating automata in SPOT.
+
+0909 Jérôme Galtier
+     Remedial treatment for Vaucanson: an enhanced automaton concept
+
+0910 Edwin Carlinet
+     Component trees in Milena
+
+0911 Warren Seine
+     Integrating modern parallel techniques in the Tiger Compiler
+
+0912 Damien Lefortier
+     A new translation from LTL into TGBA in Spot
+
+0913 Vincent Ordy
+     Study and Analysis of C++ Extension Conception with Transformers
+
+0914 Florent DHalluin
+     Adapting Vaucanson algorithms to a simpler interface
+
+0915 Guillaume Sadegh
+     Complementation of B\"uchi automata
+
+0916 Jérôme Galtier
+     Adapting the data structures of Vaucanson to the concept of kind and to a new interface
+
+1001 Christopher Chedeau
+     Functionnal approach of image processing genericity and project documentation
+
+1002 Alex Hamelin
+     Towards Vaucanson 2.0
+
+1003 Loic Denuziere
+     Property-Based Genericity: A Dynamic Approach
+
+1004 Felix Abecassis
+     Minimization of automata representing obligation formulae
+
+1005 Edwin Carlinet
+     An edges-based attribute ltering dedicated to image segmentation.
+
+1006 Julien Marquegnies
+     Dematerialization tools in Scribo
+
+1007 Alex Hamelin
+     Vaucanson 2.0 Internals
+
+1008 Loic Denuziere
+     Designing the user interface for a Common Lisp generic library
+
+1101 Edwin Carlinet
+     A fast algorithm for auto-dual tree
+
+1102 Julien Marquegnies
+     Document image analysis in SCRIBO
+
+1103 Felix Abecassis
+     Optimizations in the Tiger Compiler
+
+1104 Thomas Badie
+     Reductions by Simulation on TGBA
+
+1105 Simon Guillot
+     climb
+
+1106 Laurent Senta
+     Climb
+
+1107 David Moreira
+     Vaucanson 2.0
+
+1108 Christopher Chedeau
+     Climb
+
+1109 Didier Verna
+     Test
+
+1110 Sylvain Lobry
+     Olena
+
+1111 Pierre Parutto
+     Spot
+
+1112 Victor Lenoir
+     SpeakerID
+
+1113 Guillaume Fiette
+     Vaucanson
+
+1114 Coddy Levi
+     Olena
+
+1115 Julien Marquegnies
+     A comparative study of image invariants for text / non-text classification
+
+1116 Christopher Chedeau
+     Climb
+
+1117 Felix Abecassis
+     Olena
+
+1201 David Moreira
+     Vaucanson
+
+1202 Sylvain Lobry
+     Optical_flow
+
+1203 Thomas Badie
+     Spot
+
+1204 Coddy Levi
+     olena
+
+1205 Pierre Parutto
+     spot
+
+1206 Victor Lenoir
+     SpeakerID
