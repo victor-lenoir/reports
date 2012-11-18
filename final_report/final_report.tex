@@ -66,28 +66,39 @@
   escapeinside={\%*}{*)},            % if you want to add a comment within your code
   morekeywords={*,...}               % if you want to add more keywords to the set
 }
+%10 lines
 
-\summary{Speaker diarization and Voice Activity Detection (VAD) play
-  an important role in speaker recognition systems, especially in the
-  case of multi-speaker signal.\\ We will present speaker diarization
-  method based on both Variational Bayes approach (VB) and speaker
-  factors. This method has the advantage of using a large number of
-  speaker factors as described in state of the art publications on
-  speaker recognition systems. To test the performance of this method
-  a set of experiments will be done on NIST-SRE 2010 interview data.}
 
-\frenchsummary{La s\'eparation de locuteur et la d\'etection de voix
-  jouent un important r\^ole dans les syst\`emes de reconnaissance du
-  locuteur, principalement dans le cas d'un signal \`a plusieurs
-  locuteurs.\\Nous allons pr\'esenter une m\'ethode de s\'eparation de
-  locuteur bas\'ee sur des m\'ethodes variationnelles et sur les
-  speaker factors tel que d\'ecrite dans l'\'etat de l'art de
-  syst\`emes de reconnaissance du locuteur. Afin de tester les
-  performances de cette m\'ethode un ensemble de tests sera effectu\'e
-  sur les donn\'ees interview de NIST-SRE 2010.}
+\summary{
+  %general intro on dimensionality reduction
 
-\keywords{speaker diarization, factor analysis, speaker recognition,
-  gaussian, hidden markov model, gaussian mixture model}
+  The purpose of a speaker verification system is to check whether a
+  hypothesized speaker is really the author of a speech utterance.  In
+  the LRDE's speaker verification system, a speaker is represented by
+  a 600-dim vector and the speaker verification score is computed
+  thanks to a cosine distance between two vectors representing two
+  different speakers.
+
+
+  This paper describes a dimensionality reduction technique called
+  Spherical Discriminant Analysis (SDA) in the context of the LRDE's
+  speaker verification system.  The goals of this projection is to
+  maximize the cosine distance between different speakers; it has been
+  shown that SDA subspace yields superior performance in a speaker
+  clustering task especially with a cosine distance scoring
+  function. This paper will compare the SDA subspace performance with
+  the Probabilistic Linear Discriminant Analysis (PLDA) which is
+  currently used in the LRDE's speaker verification system.}
+%Introduce context: speaker verification, ivector, find a better subspaces
+%SDA is similar to LDA but with a cosine distance.
+%SDA Goals are:
+% - to maximize the within class cosine similiarity (aka minimize cosine distance)
+% - to minimize the between class cosine similarity (aka maximize cosine distance)
+% Has been shown that the cosine distance is betta
+\frenchsummary{Summary.}
+
+\keywords{speaker verification, dimensionality reduction, subspaces,
+  ivector, cosine distance}
 
 \begin{document}
 
