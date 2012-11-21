@@ -11,7 +11,7 @@
 %% A copy of the license is provided in the file COPYING.DOC.
 
 \documentclass{techrep} % You can pass the french option if you like.
-
+\usepackage[T1]{fontenc}
 \usepackage{amsmath, bm}
 \usepackage{fancyhdr}
 \usepackage{array}
@@ -23,7 +23,6 @@
 \usepackage{float}
 \usepackage{verbatim}
 \usepackage{makeidx}
-\usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -69,33 +68,40 @@
 %10 lines
 
 
-\summary{
-  %general intro on dimensionality reduction
-
-  The purpose of a speaker verification system is to check whether a
-  hypothesized speaker is really the author of a speech utterance.  In
-  the LRDE's speaker verification system, a speaker is represented by
-  a 600-dimension vector and the speaker verification score is
-  computed thanks to a cosine distance between two vectors
-  representing both a different speaker.
+\summary{ The purpose of a speaker verification system is to check
+  whether a hypothesized speaker is really the author of a speech
+  utterance. Currently, the best performances are performed using a
+  mapping of each speaker utterance to a low dimensional vector called
+  I-vector. The speaker verification score is computed thanks to a
+  cosine distance between these two vectors representing both a
+  speaker.
 
 
-  This paper describes a dimensionality reduction technique called
-  Spherical Discriminant Analysis (SDA) in the context of the LRDE's
-  speaker verification system.  The goals of this projection is to
-  maximize the cosine distance between different speakers; it has been
-  shown that SDA subspace yields superior performance in a speaker
-  clustering task especially with a cosine distance scoring
-  function. This paper will compare the SDA subspace performance with
-  the Probabilistic Linear Discriminant Analysis (PLDA) which is
-  currently used in the LRDE's speaker verification system.}
-%Introduce context: speaker verification, ivector, find a better subspaces
-%SDA is similar to LDA but with a cosine distance.
-%SDA Goals are:
-% - to maximize the within class cosine similiarity (aka minimize cosine distance)
-% - to minimize the between class cosine similarity (aka maximize cosine distance)
-% Has been shown that the cosine distance is betta
-\frenchsummary{Summary.}
+  In this paper, we describe a dimensionality reduction technique
+  called Spherical Discriminant Analysis (SDA).  The goals of this
+  projection are to maximize the cosine distance between different
+  speaker's uterrances and minimize the cosine distance between same
+  speaker's utterances; it has been shown that SDA subspace, which is
+  more suitable for the cosine distance than Linear Discriminant
+  Analysis (LDA), yields superior performance in face recognition
+  task. We will compare the SDA subspace performance with the standard
+  LDA approach.}
+
+\frenchsummary{La r\^ole de la v\'erification de locuteur est de
+  v\'erifier l'identit\'e pr\'esum\'ee d'un segment de parole. Actuellement,
+  les meilleures performances sont obtenus par un mapping de chaque
+  segment de parole d'un locuteur vers un vecteur appel\'e I-vector. Le
+  score de la v\'erification de locuteur est calcul\'e par une distance
+  cosine entre ces deux vecteurs repr\'esentant chacun un locuteur.
+
+Ce rapport d\'ecrit une technique de r\'eduction de dimension appel\'ee
+Spherical Discriminant Analysis (SDA). Les objectifs de cette
+projection sont de maximiser la distance cosinus entre deux locuteurs
+diff\'erents et de minimiser la distance cosinus entre deux m\^eme
+locuteurs; il a \'et\'e montr\'e que le sous-espace de la SDA, qui est plus
+appropri\'e pour la distance cosinus que la Linear Discriminant Analysis
+(LDA), obtient de meilleur performance en reconnaissance faciale. Nous
+allons comparer les performances obtenues par la SDA avec celles obtenues par la LDA.}
 
 \keywords{speaker verification, dimensionality reduction, subspaces,
   ivector, cosine distance}
