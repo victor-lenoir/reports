@@ -132,16 +132,63 @@ A copy of the license is provided in the file COPYING.DOC.
 %portée de vos résultats.  Plan
 \chapter{Context: Speaker verification system}
 %Présenter plus en détail le cadre de travail, la problématique, et
-%l’existant. C’est d’ici que doivent partir la plupart des références
-%bibliographiques. S’il y a des prérequis, des notions que devraient
-%connaître le lecteur, c’est ici (ou en annexe) qu’il faut les
-%mettre. Vous êtes invités à maintenir dans chaque projet une
-%collection de morceaux de texte prêts à l’usage. Par exemple le
+%l’existant.
+
+%S’il y a des prérequis, des notions que devraient
+%connaître le lecteur, c'est ici.
+
+%Par exemple le
 %projet Vaucanson a souvent besoin de revenir sur les bases des
 %transducteurs; il est alors stupide de taper à nouveau cette
 %introduction. Il vaut mieux maintenir une base commune, et clairement
 %faire apparaître ses auteurs.
 \section{Speaker verification system}
+
+\tikzstyle{cont}=[shape=rectangle,minimum
+  size=1.0cm,draw=blue!70,fill=blue!30,font=\small]
+
+\tikzstyle{contred}=[shape=rectangle,minimum
+  size=1.0cm,draw=red!70,fill=red!30,font=\small]
+
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8,font=\scriptsize]
+      \node[cont,initial] (s1) at (0,0) {Audio signal};
+      \node[cont] (s2) at (0,-2) {Audio features}
+      edge [<-] node[left] {Features extraction} (s1);
+      \node[cont] (s3) at (0,-4) {Speaker features}
+      edge [<-] node[left] {VAD/Speaker diarization} (s2);
+      \node[cont] (s4) at (0,-6) {Speaker model}
+      edge [<-] node[left] {Modeling} (s3);
+      \node[cont] (s5) at (0,-8) {Low-dimensional Speaker model}
+      edge [<-] node[auto] {\textcolor{red}{Dimension reduction}} (s4);
+      \node[cont] (s6) at (5,-10) {Low-dimensional Speaker model};
+      \node[cont] (s7) at (0,-10) {Score}
+      edge [<-] node[auto] {Scoring} (s5)
+      edge [<-] node[auto] {Scoring} (s6);
+      \node[cont] (s8) at (0,-12) {Decision}
+      edge [<-] node[auto] {Threshold} (s7);
+
+      %% \node[cont] (s6) at (5,2) {Speaker Model}
+      %% edge [<-] node[right] {Modeling} (s5);
+      %% \node[cont] (s7) at (5,4) {Score}
+      %% edge [<-] node[right] {} (s6);
+      %% \node (s8) at (5,6) {}
+      %% edge [<-] node[right] {Decision} (s7);
+      %% \node (s8) at (8,4) {Speaker Model}
+      %% edge [->] node[right] {} (s7);
+    \end{tikzpicture}
+  \end{center}
+
+  In our system:
+  \begin{description}
+    \item[Features extraction] 19 MFCCs, energy + their derivatives +
+      their accelerations;
+    \item[Modeling] Estimate Identity-Vector (Ivector) for a speaker
+      (600-dim vector which represents the speaker);
+    \item[Score] Cosine-Distance between 2 Ivectors;
+    \item[Decision] Threshold the score.
+  \end{description}
+
 \section{Dimension reduction}
 
 \chapter{Spherical Discriminant Analysis}
