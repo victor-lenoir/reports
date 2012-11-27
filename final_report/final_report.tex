@@ -69,7 +69,7 @@
 
 
 \summary{ The purpose of a speaker verification system is to check
-  whether a hypothesized speaker is really the author of a speech
+  whether an hypothesized speaker is really the author of a speech
   utterance. Currently, the best performances are performed using a
   mapping of each speaker utterance to a low dimensional vector called
   I-vector. The speaker verification score is computed thanks to a
@@ -156,10 +156,10 @@ have a legal status in some countries as a proof to authenticate a speaker on a 
 In this report, we consider the problem of voice authentication, generally called the speaker
 verification problem. More precisely, we focus on the text-independent speaker verification i.e
 we do not consider the uttered text.\\\\
-In our speaker verification task, speakers are first modelled from enrolment data coming
+In our speaker verification task, speakers are first modeled from enrollment data coming
 from phone recordings. During the verification task, these models enable to check whether
-a segment of speech is uttered by a hypothesised speaker. For a few years, the community
-has been more and more interested in resolving this verification problem even if the enrolment
+a segment of speech is uttered by an hypothesized speaker. For a few years, the community
+has been more and more interested in resolving this verification problem even if the enrollment
 conditions are different during the training step and the testing step.
 
 \section{Speaker verification system}
@@ -192,7 +192,7 @@ conditions are different during the training step and the testing step.
 
 In our system:
 \begin{description}
-\item[Features] Cepstral vectors (accoustic parameters);
+\item[Features] Cepstral vectors (acoustic parameters);
 \item[Speaker model] Identity-Vector (Ivector, 600-dim vector which
   represents the speaker);
 \item[Low-dimensional speaker model] 400-dim vector obtained by
@@ -203,8 +203,35 @@ In our system:
 
 \section{Dimension reduction}
 
+In this paper, we only have interest in the dimension reduction
+process. The idea is to find a subspace which yields superior
+classification performance than the original space. One of the most
+known dimension reduction technique is the Linear Discriminant
+Analysis (LDA).
+
+The goals of the LDA is to maximize the between class (different
+speakers) covariance while minimizing the within class (same speakers)
+covariance. Therefore, in the subspace, two different speakers will
+have a greater euclidean distance than in the original space.
+
 \chapter{Spherical Discriminant Analysis}
+
+In this chapter, we will present a dimension reduction technique
+called Spherical Discriminant Analysis (SDA). This technique is quite
+similar to the LDA but is using the cosine distance instead of the
+euclidean distance.
+
 \section{Principle}
+
+We have previously seen that we are using a cosine distance between two
+low-dimensional vectors to compute a score between two speaker's
+utterances. The idea behind the Spherical Discriminant Analysis is
+similar to the idea of the Linear Discriminant Analysis: we want to
+maximize the distance between two different speakers while minimizing
+the distance between two same speakers. The only difference is that we
+are using the cosine distance instead of the euclidean distance so that
+the scoring and hence the decision is more accurate.
+
 %ce qu'on veut faire et pourquoi on veut le faire
 %comment on en est arrivé à l'algo
 \section{Algorithm}
