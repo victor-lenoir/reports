@@ -144,6 +144,25 @@ A copy of the license is provided in the file COPYING.DOC.
 %faire apparaître ses auteurs.
 \section{Speaker verification system}
 
+Nowadays, in a lot of secure applications, people have to prove their own identity to go into
+a critical system. Most of these applications are based on password authentications as in bank
+cash points or in the access of some protected buildings. However in such systems, a robber can
+easily find the password and use it to gain access to the critical area. For this reason, more and
+more authentication systems are based on biometrical features like fingerprints, iris or voice
+which present more inviolable features. Indeed, the study of these biometrical features is an
+expanding research field. Furthermore, it is known that fingerprints have been used extensively
+in criminal investigations for a long time. Today, voice recognition systems are beginning to
+have a legal status in some countries as a proof to authenticate a speaker on a tape recording.
+In this report, we consider the problem of voice authentication, generally called the speaker
+verification problem. More precisely, we focus on the text-independent speaker verification i.e
+we do not consider the uttered text.\\\\
+In our speaker verification task, speakers are first modelled from enrolment data coming
+from phone recordings. During the verification task, these models enable to check whether
+a segment of speech is uttered by a hypothesised speaker. For a few years, the community
+has been more and more interested in resolving this verification problem even if the enrolment
+conditions are different during the training step and the testing step.
+
+\subsection{System}
 \tikzstyle{cont}=[shape=rectangle,minimum
   size=1.0cm,draw=blue!70,fill=blue!30,font=\small]
 
@@ -152,37 +171,27 @@ A copy of the license is provided in the file COPYING.DOC.
 
 \begin{center}
   \begin{tikzpicture}[scale=0.8,font=\scriptsize]
-    \node[cont,initial] (s1) at (0,0) {Audio signal};
+    \node[cont,initial above] (s1) at (0,0) {Audio signal};
     \node[cont] (s2) at (0,-2) {Audio features}
     edge [<-] node[left] {Features extraction} (s1);
     \node[cont] (s3) at (0,-4) {Speaker features}
-    edge [<-] node[left] {VAD/Speaker diarization} (s2);
+    edge [<-] node[left] {Voice Activity Detection/Speaker diarization} (s2);
     \node[cont] (s4) at (0,-6) {Speaker model}
     edge [<-] node[left] {Modeling} (s3);
-    \node[cont] (s5) at (0,-8) {Low-dimensional Speaker model}
+    \node[cont] (s5) at (0,-8) {Low-dimensional speaker model}
     edge [<-] node[auto] {\textcolor{red}{Dimension reduction}} (s4);
-    \node[cont] (s6) at (5,-10) {Low-dimensional Speaker model};
+    \node[cont] (s6) at (5,-10) {Low-dimensional speaker model};
     \node[cont] (s7) at (0,-10) {Score}
     edge [<-] node[auto] {Scoring} (s5)
     edge [<-] node[auto] {Scoring} (s6);
     \node[cont] (s8) at (0,-12) {Decision}
     edge [<-] node[auto] {Threshold} (s7);
-
-    %% \node[cont] (s6) at (5,2) {Speaker Model}
-    %% edge [<-] node[right] {Modeling} (s5);
-    %% \node[cont] (s7) at (5,4) {Score}
-    %% edge [<-] node[right] {} (s6);
-    %% \node (s8) at (5,6) {}
-    %% edge [<-] node[right] {Decision} (s7);
-    %% \node (s8) at (8,4) {Speaker Model}
-    %% edge [->] node[right] {} (s7);
   \end{tikzpicture}
 \end{center}
 
 In our system:
 \begin{description}
-\item[Features] 19 MFCCs, energy + their derivatives +
-  their accelerations;
+\item[Features] Cepstral vectors (accoustic parameters);
 \item[Speaker model] Identity-Vector (Ivector, 600-dim vector which
   represents the speaker);
 \item[Low-dimensional speaker model] 400-dim vector obtained by
