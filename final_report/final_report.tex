@@ -94,14 +94,14 @@
   score de la v\'erification de locuteur est calcul\'e par une distance
   cosine entre ces deux vecteurs repr\'esentant chacun un locuteur.
 
-Ce rapport d\'ecrit une technique de r\'eduction de dimension appel\'ee
-Spherical Discriminant Analysis (SDA). Les objectifs de cette
-projection sont de maximiser la distance cosinus entre deux locuteurs
-diff\'erents et de minimiser la distance cosinus entre deux m\^eme
-locuteurs; il a \'et\'e montr\'e que le sous-espace de la SDA, qui est plus
-appropri\'e pour la distance cosinus que la Linear Discriminant Analysis
-(LDA), obtient de meilleur performance en reconnaissance faciale. Nous
-allons comparer les performances obtenues par la SDA avec celles obtenues par la LDA.}
+  Ce rapport d\'ecrit une technique de r\'eduction de dimension appel\'ee
+  Spherical Discriminant Analysis (SDA). Les objectifs de cette
+  projection sont de maximiser la distance cosinus entre deux locuteurs
+  diff\'erents et de minimiser la distance cosinus entre deux m\^eme
+  locuteurs; il a \'et\'e montr\'e que le sous-espace de la SDA, qui est plus
+  appropri\'e pour la distance cosinus que la Linear Discriminant Analysis
+  (LDA), obtient de meilleur performance en reconnaissance faciale. Nous
+  allons comparer les performances obtenues par la SDA avec celles obtenues par la LDA.}
 
 \keywords{speaker verification, dimensionality reduction, subspaces,
   ivector, cosine distance}
@@ -150,44 +150,46 @@ A copy of the license is provided in the file COPYING.DOC.
 \tikzstyle{contred}=[shape=rectangle,minimum
   size=1.0cm,draw=red!70,fill=red!30,font=\small]
 
-  \begin{center}
-    \begin{tikzpicture}[scale=0.8,font=\scriptsize]
-      \node[cont,initial] (s1) at (0,0) {Audio signal};
-      \node[cont] (s2) at (0,-2) {Audio features}
-      edge [<-] node[left] {Features extraction} (s1);
-      \node[cont] (s3) at (0,-4) {Speaker features}
-      edge [<-] node[left] {VAD/Speaker diarization} (s2);
-      \node[cont] (s4) at (0,-6) {Speaker model}
-      edge [<-] node[left] {Modeling} (s3);
-      \node[cont] (s5) at (0,-8) {Low-dimensional Speaker model}
-      edge [<-] node[auto] {\textcolor{red}{Dimension reduction}} (s4);
-      \node[cont] (s6) at (5,-10) {Low-dimensional Speaker model};
-      \node[cont] (s7) at (0,-10) {Score}
-      edge [<-] node[auto] {Scoring} (s5)
-      edge [<-] node[auto] {Scoring} (s6);
-      \node[cont] (s8) at (0,-12) {Decision}
-      edge [<-] node[auto] {Threshold} (s7);
+\begin{center}
+  \begin{tikzpicture}[scale=0.8,font=\scriptsize]
+    \node[cont,initial] (s1) at (0,0) {Audio signal};
+    \node[cont] (s2) at (0,-2) {Audio features}
+    edge [<-] node[left] {Features extraction} (s1);
+    \node[cont] (s3) at (0,-4) {Speaker features}
+    edge [<-] node[left] {VAD/Speaker diarization} (s2);
+    \node[cont] (s4) at (0,-6) {Speaker model}
+    edge [<-] node[left] {Modeling} (s3);
+    \node[cont] (s5) at (0,-8) {Low-dimensional Speaker model}
+    edge [<-] node[auto] {\textcolor{red}{Dimension reduction}} (s4);
+    \node[cont] (s6) at (5,-10) {Low-dimensional Speaker model};
+    \node[cont] (s7) at (0,-10) {Score}
+    edge [<-] node[auto] {Scoring} (s5)
+    edge [<-] node[auto] {Scoring} (s6);
+    \node[cont] (s8) at (0,-12) {Decision}
+    edge [<-] node[auto] {Threshold} (s7);
 
-      %% \node[cont] (s6) at (5,2) {Speaker Model}
-      %% edge [<-] node[right] {Modeling} (s5);
-      %% \node[cont] (s7) at (5,4) {Score}
-      %% edge [<-] node[right] {} (s6);
-      %% \node (s8) at (5,6) {}
-      %% edge [<-] node[right] {Decision} (s7);
-      %% \node (s8) at (8,4) {Speaker Model}
-      %% edge [->] node[right] {} (s7);
-    \end{tikzpicture}
-  \end{center}
+    %% \node[cont] (s6) at (5,2) {Speaker Model}
+    %% edge [<-] node[right] {Modeling} (s5);
+    %% \node[cont] (s7) at (5,4) {Score}
+    %% edge [<-] node[right] {} (s6);
+    %% \node (s8) at (5,6) {}
+    %% edge [<-] node[right] {Decision} (s7);
+    %% \node (s8) at (8,4) {Speaker Model}
+    %% edge [->] node[right] {} (s7);
+  \end{tikzpicture}
+\end{center}
 
-  In our system:
-  \begin{description}
-    \item[Features extraction] 19 MFCCs, energy + their derivatives +
-      their accelerations;
-    \item[Modeling] Estimate Identity-Vector (Ivector) for a speaker
-      (600-dim vector which represents the speaker);
-    \item[Score] Cosine-Distance between 2 Ivectors;
-    \item[Decision] Threshold the score.
-  \end{description}
+In our system:
+\begin{description}
+\item[Features] 19 MFCCs, energy + their derivatives +
+  their accelerations;
+\item[Speaker model] Identity-Vector (Ivector, 600-dim vector which
+  represents the speaker);
+\item[Low-dimensional speaker model] 400-dim vector obtained by
+  Probabilistic Linear Discriminant Analysis (PLDA)
+\item[Score] Cosine-Distance between two low-dimensional speaker models;
+\item[Decision] Whether the speakers are the same or not.
+\end{description}
 
 \section{Dimension reduction}
 
@@ -203,7 +205,7 @@ A copy of the license is provided in the file COPYING.DOC.
 \section{Experiments}
 \section{Results}
 \section{Discuss}
- % Previous work, Related work, future work
+% Previous work, Related work, future work
 \chapter*{Conclusion}
 %Quelques paragraphes. Une conclusion qui résume clairement le contenu de votre rédaction, dans le même ordre que le contenu présenté était détaillé. La conclusion doit ensuite mettre l’accent sur les principaux intérêts / fonctionnalités de ce que vous avez présenté et mettre en avant votre travail.
 %Ne pas se contenter de faire une resucée du résumé. D’ailleurs, ce n’est pas une «synthèse», c’est une «conclusion». En d’autres termes, ne pas s’arrêter à un résumé de l’article, mais finir en ouvrant le débat : quelles pistes restent encore à explorer, quels nouvelles questions ou problèmes se posent, quels autres sujets semblent liés etc.
