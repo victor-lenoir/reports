@@ -94,14 +94,15 @@
   score de la v\'erification de locuteur est calcul\'e par une distance
   cosine entre ces deux vecteurs repr\'esentant chacun un locuteur.
 
-  Ce rapport d\'ecrit une technique de r\'eduction de dimension appel\'ee
-  Spherical Discriminant Analysis (SDA). Les objectifs de cette
-  projection sont de maximiser la distance cosinus entre deux locuteurs
-  diff\'erents et de minimiser la distance cosinus entre deux m\^eme
-  locuteurs; il a \'et\'e montr\'e que le sous-espace de la SDA, qui est plus
-  appropri\'e pour la distance cosinus que la Linear Discriminant Analysis
-  (LDA), obtient de meilleur performance en reconnaissance faciale. Nous
-  allons comparer les performances obtenues par la SDA avec celles obtenues par la LDA.}
+  Ce rapport d\'ecrit une technique de r\'eduction de dimension
+  appel\'ee Spherical Discriminant Analysis (SDA). Les objectifs de
+  cette projection sont de maximiser la distance cosinus entre deux
+  locuteurs diff\'erents et de minimiser la distance cosinus entre
+  deux m\^eme locuteurs; il a \'et\'e montr\'e que le sous-espace de
+  la SDA, qui est plus appropri\'e pour la distance cosinus que la
+  Linear Discriminant Analysis (LDA), obtient de meilleur performance
+  en reconnaissance faciale. Nous allons comparer les performances
+  obtenues par la SDA avec celles obtenues par la LDA.}
 
 \keywords{speaker verification, dimensionality reduction, subspaces,
   ivector, cosine distance}
@@ -111,11 +112,11 @@
 \section*{Copying this document}
 Copyright \copyright{} 2012 LRDE.
 
-Permission is granted to copy, distribute and/or modify this document under
-the terms of the GNU Free Documentation License, Version 1.2 or any later
-version published by the Free Software Foundation; with the Invariant Sections
-being just ``Copying this document'', no Front-Cover Texts, and no Back-Cover
-Texts.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being just ``Copying this document'', no
+Front-Cover Texts, and no Back-Cover Texts.
 
 A copy of the license is provided in the file COPYING.DOC.
 
@@ -137,30 +138,35 @@ A copy of the license is provided in the file COPYING.DOC.
 %S’il y a des prérequis, des notions que devraient
 %connaître le lecteur, c'est ici.
 
-%Par exemple le
-%projet Vaucanson a souvent besoin de revenir sur les bases des
-%transducteurs; il est alors stupide de taper à nouveau cette
-%introduction. Il vaut mieux maintenir une base commune, et clairement
-%faire apparaître ses auteurs.
+%Par exemple le projet Vaucanson a souvent besoin de revenir sur les
+%bases des transducteurs; il est alors stupide de taper à nouveau
+%cette introduction. Il vaut mieux maintenir une base commune, et
+%clairement faire apparaître ses auteurs.
 
 
-Nowadays, in a lot of secure applications, people have to prove their own identity to go into
-a critical system. Most of these applications are based on password authentications as in bank
-cash points or in the access of some protected buildings. However in such systems, a robber can
-easily find the password and use it to gain access to the critical area. For this reason, more and
-more authentication systems are based on biometrical features like fingerprints, iris or voice
-which present more inviolable features. Indeed, the study of these biometrical features is an
-expanding research field. Furthermore, it is known that fingerprints have been used extensively
-in criminal investigations for a long time. Today, voice recognition systems are beginning to
-have a legal status in some countries as a proof to authenticate a speaker on a tape recording.
-In this report, we consider the problem of voice authentication, generally called the speaker
-verification problem. More precisely, we focus on the text-independent speaker verification i.e
-we do not consider the uttered text.\\\\
-In our speaker verification task, speakers are first modeled from enrollment data coming
-from phone recordings. During the verification task, these models enable to check whether
-a segment of speech is uttered by an hypothesized speaker. For a few years, the community
-has been more and more interested in resolving this verification problem even if the enrollment
-conditions are different during the training step and the testing step.
+Nowadays, in a lot of secure applications, people have to prove their
+own identity to go into a critical system. Most of these applications
+are based on password authentications as in bank cash points or in the
+access of some protected buildings. However in such systems, a robber
+can easily find the password and use it to gain access to the critical
+area. For this reason, more and more authentication systems are based
+on biometrical features like fingerprints, iris or voice which present
+more inviolable features. Indeed, the study of these biometrical
+features is an expanding research field. Furthermore, it is known that
+fingerprints have been used extensively in criminal investigations for
+a long time. Today, voice recognition systems are beginning to have a
+legal status in some countries as a proof to authenticate a speaker on
+a tape recording.  In this report, we consider the problem of voice
+authentication, generally called the speaker verification
+problem. More precisely, we focus on the text-independent speaker
+verification i.e we do not consider the uttered text.\\\\ In our
+speaker verification task, speakers are first modeled from enrollment
+data coming from phone recordings. During the verification task, these
+models enable to check whether a segment of speech is uttered by an
+hypothesized speaker. For a few years, the community has been more and
+more interested in resolving this verification problem even if the
+enrollment conditions are different during the training step and the
+testing step.
 
 \section{Speaker verification system}
 
@@ -221,18 +227,27 @@ called Spherical Discriminant Analysis (SDA). This technique is quite
 similar to the LDA but is using the cosine distance instead of the
 euclidean distance.
 
+\newcommand{\argmax}[1]{\smash{\mathop{{\rm argmax}}\limits_{W}}\, #1}
+\newcommand{\argmin}[1]{\smash{\mathop{{\rm argmin}}\limits_{W}}\, #1}
+
 \section{Principle}
 
-We have previously seen that we are using a cosine distance between two
-low-dimensional vectors to compute a score between two speaker's
+We have previously seen that we are using a cosine distance between
+two low-dimensional vectors to compute a score between two speaker's
 utterances. The idea behind the Spherical Discriminant Analysis is
 similar to the idea of the Linear Discriminant Analysis: we want to
 maximize the distance between two different speakers while minimizing
 the distance between two same speakers. The only difference is that we
-are using the cosine distance instead of the euclidean distance so that
-the scoring and hence the decision is more accurate.
+are using the cosine distance instead of the euclidean distance so
+that the scoring, hence the decision, is more accurate.\\ Concretely,
+we want to find a projection matrix $W$ from the I-vector space to our
+SDA subspace such as:
 
-%ce qu'on veut faire et pourquoi on veut le faire
+$$W = \argmax(S_b - S_w)$$
+With
+$$S_b = stuff$$
+and
+$$S_w = things$$
 %comment on en est arrivé à l'algo
 \section{Algorithm}
 %algo here
@@ -244,8 +259,16 @@ the scoring and hence the decision is more accurate.
 \section{Discuss}
 % Previous work, Related work, future work
 \chapter*{Conclusion}
-%Quelques paragraphes. Une conclusion qui résume clairement le contenu de votre rédaction, dans le même ordre que le contenu présenté était détaillé. La conclusion doit ensuite mettre l’accent sur les principaux intérêts / fonctionnalités de ce que vous avez présenté et mettre en avant votre travail.
-%Ne pas se contenter de faire une resucée du résumé. D’ailleurs, ce n’est pas une «synthèse», c’est une «conclusion». En d’autres termes, ne pas s’arrêter à un résumé de l’article, mais finir en ouvrant le débat : quelles pistes restent encore à explorer, quels nouvelles questions ou problèmes se posent, quels autres sujets semblent liés etc.
+%Quelques paragraphes. Une conclusion qui résume clairement le contenu
+%de votre rédaction, dans le même ordre que le contenu présenté était
+%détaillé. La conclusion doit ensuite mettre l’accent sur les
+%principaux intérêts / fonctionnalités de ce que vous avez présenté et
+%mettre en avant votre travail.  Ne pas se contenter de faire une
+%resucée du résumé. D’ailleurs, ce n’est pas une «synthèse», c’est une
+%«conclusion». En d’autres termes, ne pas s’arrêter à un résumé de
+%l’article, mais finir en ouvrant le débat : quelles pistes restent
+%encore à explorer, quels nouvelles questions ou problèmes se posent,
+%quels autres sujets semblent liés etc.
 
 \bibliography{final_report} \nocite{*}
 \end{document}
