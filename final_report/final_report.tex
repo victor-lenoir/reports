@@ -220,6 +220,11 @@ speakers) covariance while minimizing the within class (same speakers)
 covariance. Therefore, in the subspace, two different speakers will
 have a greater euclidean distance than in the original space.
 
+A common approach to project vectors into a better subspace is to
+train a projection matrix offline using a training database with a lot
+of classes. Then, during the speaker verification process, we only
+have to project our vectors using our newly learned projection matrix.
+
 \chapter{Spherical Discriminant Analysis}
 
 In this chapter, we will present a dimension reduction technique
