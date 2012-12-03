@@ -243,16 +243,27 @@ that the scoring, hence the decision, is more accurate.\\ Concretely,
 we want to find a projection matrix $W$ from the I-vector space to our
 SDA subspace such as:
 
-$$W = \argmax(S_b - S_w)$$
-With
-$$S_b = stuff$$
-and
-$$S_w = things$$
+$$W = \argmin(S_b - S_w)$$
+with
+$$S_b =
+\frac{1}{c(c-1)}\sum_{m=1}^c\sum_{n=1}^c\frac{1}{|D_m||D_n|}\sum_{\substack{x_i
+    \in D_m \\ x_j \in D_n}}
+\frac{x_i^TWW^Tx_j}{\sqrt{x_i^TWW^Tx_i}\sqrt{x_j^TWW^Tx_j}} (m \neq
+n)$$ and
+$$S_w = \frac{1}{c}\sum_{i=1}^c\frac{1}{|D_i|^2}\sum_{x_j,x_k \in D_i}
+\frac{x_j^TWW^Tx_k}{\sqrt{x_j^TWW^Tx_j}\sqrt{x_k^TWW^Tx_k}}$$
+where:
+\begin{itemize}
+  \item $c$: number of speakers;
+  \item $D_i$: I-vectors of the speaker $i$;
+  \item $|D_i|$: number of I-vectors of the speaker $i$.      
+\end{itemize}
 %comment on en est arrivé à l'algo
 \section{Algorithm}
 %algo here
-
+\section{Implementation}
 %Corps du travail
+
 \chapter{Experiments and results}
 \section{Experiments}
 \section{Results}
