@@ -222,7 +222,7 @@ have a greater euclidean distance than in the original space.
 
 A common approach to project vectors into a better subspace is to
 train a projection matrix offline using a training database with a lot
-of classes. Then, during the speaker verification process, we only
+of classes (different speakers). Then, during the speaker verification process, we only
 have to project our vectors using our newly learned projection matrix.
 
 \chapter{Spherical Discriminant Analysis}
@@ -263,6 +263,21 @@ where:
   \item $D_i$: I-vectors of the speaker $i$;
   \item $|D_i|$: number of I-vectors of the speaker $i$.      
 \end{itemize}
+
+$S_b$ is the between-class cosine similarity of the projected
+space. It is simply the average cosine similarity (opposite of the
+cosine distance) between the data points of different classes. In this
+situation it is the average cosine similarity between the speech
+utterances of different speakers.
+
+Similarly, $S_w$ is the within-class cosine similarity of the
+projected space. It is the average cosine similarity between the
+speech utterances of same speakers.\\
+
+By finding a projection matrix $W$ minimizing the between-class cosine
+similarity while maximizing the within-class cosine similarity we find
+a subspace suitable for cosine distance scoring.
+
 %comment on en est arrivé à l'algo
 \section{Algorithm}
 %algo here
