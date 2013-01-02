@@ -249,7 +249,8 @@ $$\text{cosine distance} = 1 - \cos{\theta} = 1 - \frac{a.b}{||a||.||b||}$$
 \begin{figure}[H]
   \centering
   \includegraphics[width=250px]{cosine_distance}
-  \caption{Cosine distance plot where $x$ is the angle between two vectors.}
+  \caption{Cosine distance plot where $x$ is the angle between two
+    vectors.}
   \label{cosine_distance}
 \end{figure}
 
@@ -294,15 +295,31 @@ speech utterances of same speakers.\\
 By finding a projection matrix $W$ minimizing the between-class cosine
 similarity while maximizing the within-class cosine similarity we find
 a subspace suitable for cosine distance scoring.
-%comment on en est arrivé à l'algo
 
 \section{Algorithm}
+
+In order to find this matrix, we have to find the derivative of $S_b -
+S_w$ with the purpose to apply a gradient descent method. % phrase bizarre
+
+Let $F(W) = S_b - S_w$, then the derivative is defined as below:
+$$\frac{\partial{F(W)}}{\partial{W}} =
+2\sum_{i\neq{}j}\left[\frac{f_{ij}x_ix_i^TW}{f_i^3f_j} +
+  \frac{f_{ij}x_jx_j^TW}{f_j^3f_i} - \frac{x_ix_j^TW + x_jx_i^TW}{f_if_j}\right]s_{ij}$$
+Where:
+\begin{itemize}
+\item $f_{ij} = x_i^TWW^Tx_j$
+\item $f_i = \sqrt{x_i^TWW^Tx_i}$
+\item $s_{ij} = \frac{1}{c|D_i||D_i|}$ if $x_i$ and $x_j$ belong to the same class
+\item $s_{ij} = -\frac{1}{c(c-1)|D_i||D_j|}$ otherwise
+\end{itemize}
+
+%\subsection{Demonstration of the derivative}
 
 \subsection{Example}
 
 Let us have a small experiment to understand and observe the
 convergence of this algorithm.  For this experiment we only have three
-different speakers and the subspace dimension is set to two in order
+different speakers and the subspace dimension is chosen to be two in order
 to be able to plot the projected data.
 
 \begin{figure}[H]
@@ -322,7 +339,6 @@ represented by a color.}
  We can see three things by the figure \ref{draws}:
 \begin{itemize}
 \item The projected data is on a circle due the data normalization of the cosine distance;
-\item An euclidian distance with a normalized data is strictly equivalent to a cosine distance;
 \item Over the iterations, the average distance between the different
   speakers increased while the average distance between the same
   speakers decreased.
