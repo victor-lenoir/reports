@@ -29,6 +29,7 @@
 \usepackage{amsfonts}
 \usepackage{tikz}
 \usepackage{listings}
+
 \usetikzlibrary{automata,positioning}
 \title{SpeakerID - Spherical Discriminant Analysis}
 \author{Victor Lenoir} \revision$LastChangedRevision: 2340 $
@@ -299,7 +300,7 @@ a subspace suitable for cosine distance scoring.
 \section{Algorithm}
 
 In order to find this matrix, we have to find the derivative of $S_b -
-S_w$ with the purpose to apply a gradient descent method. % phrase bizarre
+S_w$ in order to apply a gradient descent method. % phrase bizarre
 
 Let $F(W) = S_b - S_w$, then the derivative is defined as below:
 $$\frac{\partial{F(W)}}{\partial{W}} =
@@ -312,6 +313,26 @@ Where:
 \item $s_{ij} = \frac{1}{c|D_i||D_i|}$ if $x_i$ and $x_j$ belong to the same class
 \item $s_{ij} = -\frac{1}{c(c-1)|D_i||D_j|}$ otherwise
 \end{itemize}
+
+\subsection{Gradient descent}
+
+The gradient descent is one of the most used optimization method. It
+consists in finding a local optimum (maximum or minimum) using the
+derivative at each step to head towards the local optimum. (see figure \ref{gradient_descent})
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=250px]{gradient_descent}
+  \caption{Gradient descent with only one parameter. The local minimum found is -1.}
+  \label{gradient_descent}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{lstlisting}[frame=single]
+  \end{lstlisting}
+  \caption{Gradient-descent algorithm}
+  \label{viter}
+\end{figure}
 
 %\subsection{Demonstration of the derivative}
 
