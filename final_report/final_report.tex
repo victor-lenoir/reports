@@ -255,6 +255,49 @@ $$\text{cosine distance} = 1 - \cos{\theta} = 1 - \frac{a.b}{||a||.||b||}$$
   \label{cosine_distance}
 \end{figure}
 
+\section{Gradient descent}
+
+The gradient descent is one of the most used optimization method. It's
+an iterative method which consists in using the derivative at each
+iteration to head towards the local optimum (minimum or maximum).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=250px]{gradient_descent}
+  \caption{Gradient descent with only one parameter. The local minimum found is -10 with parameter -1.}
+  \label{gradient_descent}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{lstlisting}[frame=single]
+    while not converge:
+        for parameter in parameters:
+                parameter = parameter - alpha * derivative_parameter(parameters);
+  \end{lstlisting}
+  \caption{Gradient-descent algorithm}
+  \label{algo_gradient_descent}
+\end{figure}
+
+In the algorithm \ref{algo_gradient_descent}, the alpha refers to the
+step. If the step is too low, the convergence will be very
+slow. However, if the step is too high, the algorithm may not
+converged. The big issue in the gradient descent method is to find the
+step suitable for the problem.
+
+Fortunately, there are other gradient descent methods which don't
+require to choose a step.
+
+\subsection{Resilient backpropagation}
+
+The idea behing the resilient backpropagation (Rprop) is to have
+dynamic steps unique to each parameters.
+The update rules of these steps are:
+\begin{itemize}
+\item Speed up: Increase the step when the previous derivative and the
+  current derivative have the same sign;
+\item Slow down: Decrease the step otherwise.
+\end{itemize}
+
 \section{Principle}
 
 We have previously seen that we are using a cosine distance between
@@ -314,30 +357,11 @@ Where:
 \item $s_{ij} = -\frac{1}{c(c-1)|D_i||D_j|}$ otherwise
 \end{itemize}
 
-\subsection{Gradient descent}
-
-The gradient descent is one of the most used optimization method. It's
-an iterative method which consists in using the derivative at each
-iteration to head towards the local optimum (minimum or maximum).
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=250px]{gradient_descent}
-  \caption{Gradient descent with only one parameter. The local minimum found is -10 with parameter -1.}
-  \label{gradient_descent}
-\end{figure}
-
-\begin{figure}[H]
-  \begin{lstlisting}[frame=single]
-    while not converge:
-        for parameter in parameters:
-                parameter = parameter - derivative_parameter(parameters);
-  \end{lstlisting}
-  \caption{Gradient-descent algorithm}
-  \label{viter}
-\end{figure}
-
+We now only have to find the projection matrix $W$ which minimize
+$F(W)$ using the previously seen gradient descent method with the
+derivative $\frac{\partial{F(W)}}{\partial{W}}$.
 %\subsection{Demonstration of the derivative}
+
 
 \subsection{Example}
 
