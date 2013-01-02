@@ -298,6 +298,11 @@ The update rules of these steps are:
 \item Slow down: Decrease the step otherwise.
 \end{itemize}
 
+This method has two advantages:
+\begin{itemize}
+\item We don't have to choose a step;
+\item The convergence may be faster thanks to the speed ups.
+\end{itemize}
 \section{Principle}
 
 We have previously seen that we are using a cosine distance between
@@ -367,8 +372,13 @@ derivative $\frac{\partial{F(W)}}{\partial{W}}$.
 
 Let us have a small experiment to understand and observe the
 convergence of this algorithm.  For this experiment we only have three
-different speakers and the subspace dimension is chosen to be two in order
-to be able to plot the projected data.
+different speakers and the subspace dimension is chosen to be two in
+order to be able to plot the projected data.
+
+Once the projection matrix $W$ is computed, the projection is done by:
+$$y_i = \frac{W^Tx_i}{||W^Tx_i||}$$ The normalization term is not
+mandatory for we use the cosine distance (which normalizes) but it
+gives a better idea on the plot of the cosine distance.
 
 \begin{figure}[H]
   \centering
@@ -384,16 +394,29 @@ represented by a color.}
   \label{draws}
 \end{figure}
 
- We can see three things by the figure \ref{draws}:
-\begin{itemize}
-\item The projected data is on a circle due the data normalization of the cosine distance;
-\item Over the iterations, the average distance between the different
-  speakers increased while the average distance between the same
-  speakers decreased.
-\end{itemize}
+
+The projected data is on a circle due to the data normalization.  We can
+observe in the figure \ref{draws} that, over the iterations, the
+average distance between the different speakers increased while the
+average distance between the same speakers decreased.
 
 \section{Implementation}
-%Corps du travail
+In this part, I will talk about the implementation specifications,
+problems and solutions found.
+
+\subsection{Specifications}
+
+The implementation was made in C++ using the library blas for matrix
+computations.
+
+%talk about matrix class? YES.
+
+\subsection{Problems}
+
+%CPU
+%RAM
+
+
 
 \chapter{Experiments and results}
 \section{Experiments}
