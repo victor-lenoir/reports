@@ -237,8 +237,21 @@ euclidean distance.
 \newcommand{\argmax}[1]{\smash{\mathop{{\rm argmax}}\limits_{W}}\, #1}
 \newcommand{\argmin}[1]{\smash{\mathop{{\rm argmin}}\limits_{W}}\, #1}
 
-%\section{Cosine distance}
-%The cosine distance is a well-used distance which
+\section{Cosine distance}
+
+The cosine distance is a well-used distance which only considers the
+direction of a data point and not its norm like the usual euclidian distance.
+
+$$a.b = ||a||.||b||. \cos{\theta}$$
+$$\text{cosine similarity} = \cos{\theta} = \frac{a.b}{||a||.||b||}$$
+$$\text{cosine distance} = 1 - \cos{\theta} = 1 - \frac{a.b}{||a||.||b||}$$
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=250px]{cosine_distance}
+  \caption{Cosine distance plot where $x$ is the angle between two vectors.}
+  \label{cosine_distance}
+\end{figure}
 
 \section{Principle}
 
