@@ -316,19 +316,22 @@ Where:
 
 \subsection{Gradient descent}
 
-The gradient descent is one of the most used optimization method. It
-consists in finding a local optimum (maximum or minimum) using the
-derivative at each step to head towards the local optimum. (see figure \ref{gradient_descent})
+The gradient descent is one of the most used optimization method. It's
+an iterative method which consists in using the derivative at each
+iteration to head towards the local optimum (minimum or maximum).
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=250px]{gradient_descent}
-  \caption{Gradient descent with only one parameter. The local minimum found is -1.}
+  \caption{Gradient descent with only one parameter. The local minimum found is -10 with parameter -1.}
   \label{gradient_descent}
 \end{figure}
 
 \begin{figure}[H]
   \begin{lstlisting}[frame=single]
+    while not converge:
+        for parameter in parameters:
+                parameter = parameter - derivative_parameter(parameters);
   \end{lstlisting}
   \caption{Gradient-descent algorithm}
   \label{viter}
