@@ -147,7 +147,7 @@ A copy of the license is provided in the file COPYING.DOC.
 Nowadays, in a lot of secure applications, people have to prove their
 own identity to go into a critical system. Most of these applications
 are based on password authentications as in bank cash points or in the
-access of some protected buildings. However in such systems, a robber
+access of some protected buildings. However, in such systems, a robber
 can easily find the password and use it to gain access to the critical
 area. For this reason, more and more authentication systems are based
 on biometrical features like fingerprints, iris or voice which present
@@ -227,6 +227,8 @@ have to project our vectors using our newly learned projection matrix.
 
 \chapter{Spherical Discriminant Analysis}
 
+
+
 In this chapter, we will present a dimension reduction technique
 called Spherical Discriminant Analysis (SDA). This technique is quite
 similar to the LDA but is using the cosine distance instead of the
@@ -234,6 +236,9 @@ euclidean distance.
 
 \newcommand{\argmax}[1]{\smash{\mathop{{\rm argmax}}\limits_{W}}\, #1}
 \newcommand{\argmin}[1]{\smash{\mathop{{\rm argmin}}\limits_{W}}\, #1}
+
+%\section{Cosine distance}
+%The cosine distance is a well-used distance which
 
 \section{Principle}
 
@@ -261,7 +266,7 @@ where:
 \begin{itemize}
   \item $c$: number of speakers;
   \item $D_i$: I-vectors of the speaker $i$;
-  \item $|D_i|$: number of I-vectors of the speaker $i$.      
+  \item $|D_i|$: number of I-vectors of the speaker $i$.
 \end{itemize}
 
 $S_b$ is the between-class cosine similarity of the projected
@@ -273,14 +278,43 @@ utterances of different speakers.
 Similarly, $S_w$ is the within-class cosine similarity of the
 projected space. It is the average cosine similarity between the
 speech utterances of same speakers.\\
-
 By finding a projection matrix $W$ minimizing the between-class cosine
 similarity while maximizing the within-class cosine similarity we find
 a subspace suitable for cosine distance scoring.
-
 %comment on en est arrivé à l'algo
+
 \section{Algorithm}
-%algo here
+
+\subsection{Example}
+
+Let us have a small experiment to understand and observe the
+convergence of this algorithm.  For this experiment we only have three
+different speakers and the subspace dimension is set to two in order
+to be able to plot the projected data.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=150px]{draw0}
+  \includegraphics[width=150px]{draw1}
+  \includegraphics[width=150px]{draw2}
+  \includegraphics[width=150px]{draw3}
+  \includegraphics[width=150px]{draw4}
+  \includegraphics[width=150px]{draw8}
+  \caption{Projected data plots by the randomly intialiazed matrix and
+    by the matrix after 1, 2, 3, 4 and 8 iterations. A data point is a speech utterance and a speaker is
+represented by a color.}
+  \label{draws}
+\end{figure}
+
+ We can see three things by the figure \ref{draws}:
+\begin{itemize}
+\item The projected data is on a circle due the data normalization of the cosine distance;
+\item An euclidian distance with a normalized data is strictly equivalent to a cosine distance;
+\item Over the iterations, the average distance between the different
+  speakers increased while the average distance between the same
+  speakers decreased.
+\end{itemize}
+
 \section{Implementation}
 %Corps du travail
 
