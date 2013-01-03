@@ -429,7 +429,20 @@ Let $n$ be the total number of data points (speech utterances), $d$ be
 the dimension of the data and $d'$ the dimension of the projected
 data.
 
-Then the complexity is equal to: $\circ{(n^2.(d^2.d'+d.d'+d'^2))}$
+Then the complexity is equal to:
+$$\circ{(n^2.(d^2.d'+d.d'+d'^2))} = \circ{(n^2.(d^2.d'+d'^2))} = \circ{(n^2d^2d'+n^2d'^2)}$$
+In our application we have:
+\begin{itemize}
+  \item $n = 30000$
+  \item $d = 600$
+  \item $d' = 250$
+\end{itemize}
+
+Given that we have to do this computation at each iteration, we see
+that we have to rethink this equation in order to get rid of most of
+the computation of complexity $n^2$.
+
+New complexity: $$\circ{(n^2.d+n.d^2.d')}$$
 %CPU
 %RAM
 %Formula
