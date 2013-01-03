@@ -462,6 +462,11 @@ $$\frac{\partial{F(W)}}{\partial{W}} =
 2\sum_{i}\left[2\frac{x_ix_i^Tx_i^TWW^T}{f_i^3}\sum_{j\neq{}i}\frac{x_js_{ij}}{f_j}
   - \sum_{j\neq{}i}\left[\frac{x_ix_j^Ts_{ij}}{f_if_j} - \frac{x_jx_i^Ts_{ij}}{f_if_j}\right]\right]W$$
 
+$$\frac{\partial{F(W)}}{\partial{W}} =
+2\sum_{i}\left[2\frac{x_ix_i^Tx_i^TWW^T}{f_i^3}\sum_{j\neq{}i}\frac{x_js_{ij}}{f_j}
+  - A_i - A_i^T\right]W$$
+
+$$\text{with: } A_i = \frac{x_i}{f_i}\sum_{j\neq{}i}\frac{x_jw_{ij}}{f_j}$$
 New complexity: $$\circ{(n^2.d+n.d^2.d')}$$
 %CPU
 %RAM
