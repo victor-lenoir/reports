@@ -177,25 +177,29 @@ testing step.
 \tikzstyle{contred}=[shape=rectangle,minimum
   size=1.0cm,draw=red!70,fill=red!30,font=\small]
 
-\begin{center}
-  \begin{tikzpicture}[scale=0.8,font=\scriptsize]
-    \node[cont,initial above] (s1) at (0,0) {Audio signal};
-    \node[cont] (s2) at (0,-2) {Audio features}
-    edge [<-] node[left] {Features extraction} (s1);
-    \node[cont] (s3) at (0,-4) {Speaker features}
-    edge [<-] node[left] {Voice Activity Detection/Speaker diarization} (s2);
-    \node[cont] (s4) at (0,-6) {Speaker model}
-    edge [<-] node[left] {Modeling} (s3);
-    \node[cont] (s5) at (0,-8) {Low-dimensional speaker model}
-    edge [<-] node[auto] {\textcolor{red}{Dimension reduction}} (s4);
-    \node[cont] (s6) at (5,-10) {Low-dimensional speaker model};
-    \node[cont] (s7) at (0,-10) {Score}
-    edge [<-] node[auto] {Scoring} (s5)
-    edge [<-] node[auto] {Scoring} (s6);
-    \node[cont] (s8) at (0,-12) {Decision}
-    edge [<-] node[auto] {Threshold} (s7);
-  \end{tikzpicture}
-\end{center}
+\begin{figure}[H]
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8,font=\scriptsize]
+      \node[cont,initial above] (s1) at (0,0) {Audio signal};
+      \node[cont] (s2) at (0,-2) {Audio features}
+      edge [<-] node[left] {Features extraction} (s1);
+      \node[cont] (s3) at (0,-4) {Speaker features}
+      edge [<-] node[left] {Voice Activity Detection/Speaker diarization} (s2);
+      \node[cont] (s4) at (0,-6) {Speaker model}
+      edge [<-] node[left] {Modeling} (s3);
+      \node[cont] (s5) at (0,-8) {Low-dimensional speaker model}
+      edge [<-] node[auto] {\textcolor{red}{Dimension reduction}} (s4);
+      \node[cont] (s6) at (5,-10) {Low-dimensional speaker model};
+      \node[cont] (s7) at (0,-10) {Score}
+      edge [<-] node[auto] {Scoring} (s5)
+      edge [<-] node[auto] {Scoring} (s6);
+      \node[cont] (s8) at (0,-12) {Decision}
+      edge [<-] node[auto] {Threshold} (s7);
+    \end{tikzpicture}
+  \end{center}
+  \caption{Flowchart of a speaker verification system.}
+  \label{flowchart_svs}
+\end{figure}
 
 In our system:
 \begin{description}
@@ -227,8 +231,6 @@ of classes (different speakers). Then, during the speaker verification process, 
 have to project our vectors using our newly learned projection matrix.
 
 \chapter{Spherical Discriminant Analysis}
-
-
 
 In this chapter, we will present a dimension reduction technique
 called Spherical Discriminant Analysis (SDA). This technique is quite
@@ -525,8 +527,56 @@ $$\text{with: } A_i = \frac{x_i}{f_i}\sum_{j\neq{}i}\frac{x_js_{ij}}{f_j}$$
 New complexity: $$\circ{(n^2.d+n.d^2.d')}$$
 
 \chapter{Experiments and results}
+
+This chapter describes the obtained results given by the experiments
+realized to test our dimension reduction method. First, the whole step
+of parametrisation, the used tools and the used corpus to performed
+the NIST 2006 SRE campaign are described. Then the results are
+presented and compared to the results obtained from the Probabilistic
+Linear Discriminant Analysis (PLDA).
+
 \section{Experiments}
+
+
+
+
+%Explain the whoooole process and the whole specifications EVERYTHING
+%FROM THE BEGINNING HTK, GMM, EM, A
+
 \section{Results}
+
+The results are presented using Decision Error Tradeoff (DET)
+curves. These enable to compare different speaker verification
+systems. The performances are represented by plotting the false-alarm
+probability $P_{FalseAlarm}$ as a function of the miss error
+probability $P_{Miss}$. The probability $P_{FalseAlarm}$ corresponds
+to the probability to reject a target speaker while the probability
+$P_{Miss}$ corresponds to the probability to accept a non-target
+speaker (or impostor). Unfortunately, it is generally not possible to
+minimise $P_{FalseAlarm}$ and $P_{Miss}$ together. Thus, the DET
+curves underline the tradeoff between the miss errors and the
+false-alarm errors. Given a false-alarm error rate, we can infer the
+corresponding miss error rate and vice-versa. So a system is better
+than another if its DET curve is closer to the origin point than the
+other DET curve.  Another criterion to compare speaker verification
+systems is to study specific points of the DET curves. Generally,
+systems are compared by studying the point where the two probabilities
+$P_{FalseAlarm}$ and $P_{Miss}$ are equal. This point is characterised
+by the equal probability known as the Equal Error Rate (EER). However,
+in the speaker verification task, it is more preferable to reject
+clients than to accept impostors to intrude in the system. That is
+given by studying the point which minimised a Decision Cost Function
+(DCF). The DCF is a function which assigns a cost for each kind of
+errors. Actually, the DCF promotes the false-alarm errors and
+penalises the miss errors. Thus the DCF is defined as a weighted sum
+of miss and false-alarm error probabilities given by
+
+$$C_{CDF} = C_{Miss}.P_{Miss}.P_{Target} + C_{FalseAlarm}.P_{FalseAlarm}.(1 - P_{Target})$$
+
+where $C_{Miss}$ and $C_{FalseAlarm}$ are respectively the associated
+costs to a miss and a false-alarm error. The $P_{Target}$ is the
+probability to have a true access.
+
 \section{Discuss}
 % Previous work, Related work, future work
 \chapter*{Conclusion}
