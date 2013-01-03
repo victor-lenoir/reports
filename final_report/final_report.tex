@@ -70,7 +70,7 @@
 
 
 \summary{The purpose of a speaker verification system is to check
-  whether an hypothesized speaker is really the author of a speech
+  whether a hypothesized speaker is really the author of a speech
   utterance. Currently, the best performances are performed using a
   mapping of each speaker utterance to a low dimensional vector called
   I-vector. The speaker verification score is computed thanks to a
@@ -81,7 +81,7 @@
   In this paper, we describe a dimensionality reduction technique
   called Spherical Discriminant Analysis (SDA).  The goals of this
   projection are to maximize the cosine distance between different
-  speaker's uterrances and minimize the cosine distance between same
+  speaker's utterances and minimize the cosine distance between same
   speaker's utterances; it has been shown that SDA subspace, which is
   more suitable for the cosine distance than Linear Discriminant
   Analysis (LDA), yields superior performance in face recognition
@@ -160,10 +160,10 @@ legal status in some countries as a proof to authenticate a speaker on
 a tape recording.  In this report, we consider the problem of voice
 authentication, generally called the speaker verification
 problem. More precisely, we focus on the text-independent speaker
-verification i.e we do not consider the uttered text.\\\\ In our
+verification i.e. we do not consider the uttered text.\\\\ In our
 speaker verification task, speakers are first modeled from enrollment
 data coming from phone recordings. During the verification task, these
-models enable to check whether a segment of speech is uttered by an
+models enable to check whether a segment of speech is uttered by a
 hypothesized speaker. For a few years, the community has been more and
 more interested in resolving this verification problem even if the
 enrollment conditions are different during the training step and the
@@ -214,13 +214,13 @@ In our system:
 
 \section{Dimension reduction}
 
-In this paper, we only have interest in the dimension reduction
+In this paper, we are only interested in the dimension reduction
 process. The idea is to find a subspace which yields superior
 classification performance than the original space. One of the most
 known dimension reduction technique is the Linear Discriminant
 Analysis (LDA).
 
-The goals of the LDA is to maximize the between class (different
+The goals of the LDA are to maximize the between class (different
 speakers) covariance while minimizing the within class (same speakers)
 covariance. Therefore, in the subspace, two different speakers will
 have a greater euclidean distance than in the original space.
@@ -234,7 +234,7 @@ have to project our vectors using our newly learned projection matrix.
 
 In this chapter, we will present a dimension reduction technique
 called Spherical Discriminant Analysis (SDA). This technique is quite
-similar to the LDA but is using the cosine distance instead of the
+similar to the LDA, but is using the cosine distance instead of the
 euclidean distance.
 
 \newcommand{\argmax}[1]{\smash{\mathop{{\rm argmax}}\limits_{W}}\, #1}
@@ -292,7 +292,7 @@ require to choose a step.
 \subsection{Resilient backpropagation}
 
 The idea behind the resilient back-propagation (Rprop) is to have
-dynamic steps unique to each parameters.
+dynamic steps unique to each parameter.
 The update rules of these steps are:
 \begin{itemize}
 \item Speed up: Increase the step when the previous partial derivative and the
@@ -391,8 +391,9 @@ gives a better idea on the plot of the cosine distance.
   \includegraphics[width=150px]{draw4}
   \includegraphics[width=150px]{draw8}
   \caption{Projected data plots by the randomly initialized matrix and
-    by the matrix after 1, 2, 3, 4 and 8 iterations. A data point is a speech utterance and a speaker is
-represented by a color.}
+    by the matrix after one, two, three, four and eight iterations. A
+    data point is a speech utterance and a speaker is represented by a
+    color.}
   \label{draws}
 \end{figure}
 
@@ -403,8 +404,8 @@ average distance between the different speakers increased while the
 average distance between the same speakers decreased.
 
 \section{Implementation}
-In this part, I will talk about the implementation specifications,
-issues and solutions found.
+In this part, I will discuss the implementation specifications, issues
+and solutions found.
 
 \subsection{Specifications}
 
@@ -530,8 +531,8 @@ New complexity: $$\circ{(n^2.d+n.d^2.d')}$$
 
 This chapter describes the obtained results given by the experiments
 realized to test our dimension reduction method. First, the whole step
-of parametrization, the used tools and the used corpus to performed
-the NIST 2012 SRE campaign are described. Then the results are
+of parametrization, the used tools and the used corpus to perform
+the NIST 2012 SRE campaign are described. Then, the results are
 presented and compared to the results obtained from the Probabilistic
 Linear Discriminant Analysis (PLDA).
 
@@ -563,7 +564,7 @@ systems is to study specific points of the DET curves. Generally,
 systems are compared by studying the point where the two probabilities
 $P_{FalseAlarm}$ and $P_{Miss}$ are equal. This point is characterized
 by the equal probability known as the Equal Error Rate (EER). However,
-in the speaker verification task, it is more preferable to reject
+in the speaker verification task, it is preferable to reject
 clients than to accept impostors to intrude in the system. That is
 given by studying the point which minimized a Decision Cost Function
 (DCF). The DCF is a function which assigns a cost for each kind of
