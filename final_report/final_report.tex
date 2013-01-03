@@ -281,7 +281,7 @@ iteration to head towards the local optimum (minimum or maximum).
 In the algorithm \ref{algo_gradient_descent}, the alpha refers to the
 step. If the step is too low, the convergence will be very
 slow. However, if the step is too high, the algorithm may not
-converged. The big issue in the gradient descent method is to find the
+converged. The big issue in the gradient descent method is to find a
 step suitable for the problem.
 
 Fortunately, there are other gradient descent methods which don't
@@ -293,8 +293,8 @@ The idea behing the resilient backpropagation (Rprop) is to have
 dynamic steps unique to each parameters.
 The update rules of these steps are:
 \begin{itemize}
-\item Speed up: Increase the step when the previous derivative and the
-  current derivative have the same sign;
+\item Speed up: Increase the step when the previous partial derivative and the
+  current partial derivative have the same sign;
 \item Slow down: Decrease the step otherwise.
 \end{itemize}
 
@@ -402,20 +402,37 @@ average distance between the same speakers decreased.
 
 \section{Implementation}
 In this part, I will talk about the implementation specifications,
-problems and solutions found.
+issues and solutions found.
 
 \subsection{Specifications}
 
-The implementation was made in C++ using the library blas for matrix
+The implementation was made in C++ using the blas library for matrix
 computations.
 
 %talk about matrix class? YES.
 
-\subsection{Problems}
+\subsection{Issues}
 
+A big issue in this projection method is the derivative computation
+because it's computationally expensive.
+Let's have a quick look at the complexity of the derivative computation.
+
+$$\frac{\partial{F(W)}}{\partial{W}} =
+2\sum_{i\neq{}j}\left[\frac{f_{ij}x_ix_i^TW}{f_i^3f_j} +
+  \frac{f_{ij}x_jx_j^TW}{f_j^3f_i} - \frac{x_ix_j^TW + x_jx_i^TW}{f_if_j}\right]s_{ij}$$
+
+$$\frac{\partial{F(W)}}{\partial{W}} =
+2\sum_{j}\sum_{i\neq{}j}\left[\frac{f_{ij}x_ix_i^TW}{f_i^3f_j} +
+  \frac{f_{ij}x_jx_j^TW}{f_j^3f_i} - \frac{x_ix_j^TW + x_jx_i^TW}{f_if_j}\right]s_{ij}$$
+
+Let $n$ be the total number of data points (speech utterances), $d$ be
+the dimension of the data and $d'$ the dimension of the projected
+data.
+
+Then the complexity is equal to: $\circ{(n^2.(d^2.d'+d.d'+d'^2))}$
 %CPU
 %RAM
-
+%Formula
 
 
 \chapter{Experiments and results}
