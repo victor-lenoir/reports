@@ -442,6 +442,26 @@ Given that we have to do this computation at each iteration, we see
 that we have to rethink this equation in order to get rid of most of
 the computation of complexity $n^2$.
 
+$$\frac{\partial{F(W)}}{\partial{W}} =
+2\sum_{j}\sum_{i\neq{}j}\left[\frac{x_i^TWW^Tx_jx_ix_i^T}{f_i^3f_j} +
+  \frac{x_i^TWW^Tx_jx_jx_j^T}{f_j^3f_i} - \frac{x_ix_j^T + x_jx_i^T}{f_if_j}\right]Ws_{ij}$$
+
+$$\frac{\partial{F(W)}}{\partial{W}} =
+2\sum_{j}\sum_{i\neq{}j}\left[2\frac{x_i^TWW^Tx_jx_ix_i^T}{f_i^3f_j}
+   - \frac{x_ix_j^T + x_jx_i^T}{f_if_j}\right]Ws_{ij}$$
+
+$$\frac{\partial{F(W)}}{\partial{W}} =
+2\sum_{j}\sum_{i\neq{}j}\left[2\frac{x_ix_i^Tx_i^TWW^Tx_j}{f_i^3f_j}
+   - \frac{x_ix_j^T + x_jx_i^T}{f_if_j}\right]Ws_{ij}$$
+
+$$\frac{\partial{F(W)}}{\partial{W}} =
+2\sum_{i}\sum_{j\neq{}i}\left[2\frac{x_ix_i^Tx_i^TWW^Tx_j}{f_i^3f_j}
+   - \frac{x_ix_j^T}{f_if_j} - \frac{x_jx_i^T}{f_if_j}\right]Ws_{ij}$$
+
+$$\frac{\partial{F(W)}}{\partial{W}} =
+2\sum_{i}\left[2\frac{x_ix_i^Tx_i^TWW^T}{f_i^3}\sum_{j\neq{}i}\frac{x_js_{ij}}{f_j}
+  - \sum_{j\neq{}i}\left[\frac{x_ix_j^Ts_{ij}}{f_if_j} - \frac{x_jx_i^Ts_{ij}}{f_if_j}\right]\right]W$$
+
 New complexity: $$\circ{(n^2.d+n.d^2.d')}$$
 %CPU
 %RAM
