@@ -574,6 +574,37 @@ Linear Discriminant Analysis (PLDA).
 %TODO: Explain the whoooole process and the whole specifications EVERYTHING
 %FROM THE BEGINNING HTK, GMM, EM, A
 
+This section describes the experiments realized to compare the
+dimension reduction methods. These experiments are performed on the
+trials of the NIST 2012 SRE campaign which consists in training 2204
+speakers and performing 576672196 tests. %CORRECT: Faux chiffres.
+
+\subsection{Features extraction}
+
+%% The feature extraction is processed by the ALIZE module of the ELISA
+%% Consortium (Magrin- Chagnolleau et al., 2001). First, this one sampled
+%% the speech signal every 10ms on a 20ms sliding window. From this
+%% window, 16 Linear Frequency Cepstral Coefficients (LFCC) are
+%% extracted.  Then, the 16 first order deltas are computed. A
+%% 33-dimensional cepstral vector is obtained by taking the 16 LFCCs, the
+%% 16 first order deltas and the delta energy. Finally, normalisation is
+%% performed such that the 33 features are centred on zero and scaled to
+%% an unitary variance. Fur- thermore, cepstral vectors corresponding to
+%% the silence are skipped by a Bi-Gaussian model of the speech energy.
+
+\subsection{Voice activity detection/Speaker diarization}
+\subsection{Modeling}
+
+%% The BECARS module of the ENST (Blouet et al., 2004) is used to build
+%% probabilistic speaker models which are large GMMs of 512 Gaussians
+%% with diagonal covariance matrices. The world model is trained from the
+%% Fisher English database Part 1 and 2 and NIST 2003 by applying LBG
+%% based Expectation-Maximisation algorithm. The speaker models are
+%% estimated by Maximum A Posteriori adaptation from the world model by
+%% updating the Gaussian mean vectors only.
+
+\subsection{Dimension reduction}
+\subsection{Scoring}
 
 %In our system:
 %\begin{description}
