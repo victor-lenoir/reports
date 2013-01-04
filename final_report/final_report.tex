@@ -162,17 +162,6 @@ A copy of the license is provided in the file COPYING.DOC.
 %pour que celui-ci puisse comprendre l’intérêt de votre travail et la
 %portée de vos résultats.  Plan
 \chapter{Context: Speaker verification system}
-%Présenter plus en détail le cadre de travail, la problématique, et
-%l’existant.
-
-%S’il y a des prérequis, des notions que devraient
-%connaître le lecteur, c'est ici.
-
-%Par exemple le projet Vaucanson a souvent besoin de revenir sur les
-%bases des transducteurs; il est alors stupide de taper à nouveau
-%cette introduction. Il vaut mieux maintenir une base commune, et
-%clairement faire apparaître ses auteurs.
-
 
 Nowadays, in a lot of secure applications, people have to prove their
 own identity to go into a critical system. Most of these applications
@@ -268,28 +257,23 @@ gaussian model). Then, the model would be a vector of the dimension of
 the features.
 
 \subsection{Dimension reduction}
-%TODO
+
+The goal of the dimension reduction is to find a model subspace which yields
+superior classification performance than the original model space.
+
 \subsection{Scoring}
-%Given a trained speaker model, we want to determine how well it per-
-%forms. This is done by comparing false alarm percentages to miss percentages. This phase
-%also allows us to adjust our model according to how much false alarm we want to tolerate
-%compared to misses.
+
+The scoring is the comparison of two speaker models. The scoring
+results in a score of likeness of the models.
 
 \subsection{Threshold}
-%The final goal of a well tuned speaker verification system is to take a decision
-%on whether the given sound data has been indeed produced by the person who proclaims
-%to be the speaker.
 
-In our system:
-\begin{description}
-\item[Features] Cepstral vectors (acoustic parameters);
-\item[Speaker model] Identity-Vector (Ivector, 600-dim vector which
-  represents the speaker);
-\item[Low-dimensional speaker model] 400-dim vector obtained by
-  Probabilistic Linear Discriminant Analysis (PLDA)
-\item[Score] Cosine-Distance between two low-dimensional speaker models;
-\item[Decision] Whether the speakers are the same or not.
-\end{description}
+The final goal of a well tuned speaker verification system is to take a decision
+on whether the given sound data has been indeed produced by the person who proclaims
+to be the speaker.
+To take a final decision, we just have to threshold the computed score.
+
+%NAIVE EXAMPLE OF SPEAKER RECO? AWESOME!
 
 \section{Dimension reduction}
 
@@ -616,6 +600,18 @@ Linear Discriminant Analysis (PLDA).
 
 %Explain the whoooole process and the whole specifications EVERYTHING
 %FROM THE BEGINNING HTK, GMM, EM, A
+
+
+%In our system:
+%\begin{description}
+%\item[Features] Cepstral vectors (acoustic parameters);
+%\item[Speaker model] Identity-Vector (Ivector, 600-dim vector which
+%  represents the speaker);
+%\item[Low-dimensional speaker model] 400-dim vector obtained by
+%  Probabilistic Linear Discriminant Analysis (PLDA)
+%\item[Score] Cosine-Distance between two low-dimensional speaker models;
+%\item[Decision] Whether the speakers are the same or not.
+%\end{description}
 
 \section{Results}
 
