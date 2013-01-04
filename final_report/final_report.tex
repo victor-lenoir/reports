@@ -1,16 +1,4 @@
-%%% 1206.tex
-
-%% Copyright (C) 2012 LRDE.
-
-%% Permission is granted to copy, distribute and/or modify this document
-%% under the terms of the GNU Free Documentation License, Version 1.2
-%% or any later version published by the Free Software Foundation;
-%% with the Invariant Sections being just ``Copying this document'',
-%% no Front-Cover Texts, and no Back-Cover Texts.
-
-%% A copy of the license is provided in the file COPYING.DOC.
-
-\documentclass{techrep} % You can pass the french option if you like.
+\documentclass{techrep}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath, bm}
 \usepackage{fancyhdr}
@@ -34,68 +22,56 @@
 \title{SpeakerID - Spherical Discriminant Analysis}
 \author{Victor Lenoir} \revision$LastChangedRevision: 2340 $
 \date{January 2013} \email{lenoir@lrde.epita.fr}
-%% \www{URL}{TEXT}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
-\definecolor{colKeys}{rgb}{0,0,1} 
-\definecolor{colIdentifier}{rgb}{0,0,0} 
-\definecolor{colComments}{rgb}{0,0.5,1} 
-\definecolor{colString}{rgb}{0.6,0.1,0.1} 
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{0,0.5,1}
+\definecolor{colString}{rgb}{0.6,0.1,0.1}
 
-
-
-%10 lines
-
-\lstset{ %
-  language=Python,                % the language of the code
-  basicstyle=\footnotesize,           % the size of the fonts that are used for the code
-  numbers=left,                   % where to put the line-numbers
-  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
-  stepnumber=2,                   % the step between two line-numbers. If it's 1, each line
-  % will be numbered
-  numbersep=5pt,                  % how far the line-numbers are from the code
-  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
-  showspaces=false,               % show spaces adding particular underscores
-  showstringspaces=false,         % underline spaces within strings
-  showtabs=false,                 % show tabs within strings adding particular underscores
-  frame=single,                   % adds a frame around the code
-  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
-  tabsize=2,                      % sets default tabsize to 2 spaces
-  captionpos=b,                   % sets the caption-position to bottom
-  breaklines=true,                % sets automatic line breaking
-  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
-  title=\lstname,                   % show the filename of files included with \lstinputlisting;
-  % also try caption instead of title
-  keywordstyle=\color{blue},          % keyword style
-  commentstyle=\color{dkgreen},       % comment style
-  stringstyle=\color{mauve},         % string literal style
-  escapeinside={\%*}{*)},            % if you want to add a comment within your code
-  morekeywords={*,...}               % if you want to add more keywords to the set
+\lstset{
+  language=Python,
+  basicstyle=\footnotesize,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=2,
+  numbersep=5pt,
+  backgroundcolor=\color{white},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  frame=single,
+  rulecolor=\color{black},
+  tabsize=2,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=false,
+  title=\lstname,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  escapeinside={\%*}{*)},
+  morekeywords={*,...}
 }
 
-\lstset{%configuration de listings 
-  float=hbp,% 
-  basicstyle=\ttfamily\small, % 
-  identifierstyle=\color{colIdentifier}, % 
-  keywordstyle=\color{colKeys}, % 
-  stringstyle=\color{colString}, % 
-  commentstyle=\color{colComments}, % 
-  %columns=flexible, % 
-  %tabsize=2, % 
-  %frame=trBL, % 
-  frameround=tttt, % 
-  extendedchars=true, % 
-showspaces=false, % 
-showstringspaces=false, % 
-numbers=left, % 
-numberstyle=\tiny, % 
-breaklines=true, % 
-breakautoindent=true, % 
-captionpos=b,% 
-%xrightmargin=-2cm, % 
-%xleftmargin=-2cm 
+\lstset{
+  float=hbp,
+  basicstyle=\ttfamily\small,
+  identifierstyle=\color{colIdentifier},
+  keywordstyle=\color{colKeys},
+  stringstyle=\color{colString},
+  commentstyle=\color{colComments},
+  frameround=tttt,
+  extendedchars=true,
+  showspaces=false,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  breaklines=true,
+  breakautoindent=true,
+  captionpos=b,
 }
 
 \summary{The purpose of a speaker verification system is to check
@@ -153,9 +129,9 @@ A copy of the license is provided in the file COPYING.DOC.
 \tableofcontents
 
 \newpage
-%TODO: remerciements
+
 \chapter*{Introduction}
-%Une introduction avec le contexte général de votre travail, une
+%TODO: Une introduction avec le contexte général de votre travail, une
 %description des problèmes auxquels vous voulez répondre et comment
 %vous y répondez.  L’introduction doit capturer le lecteur et lui
 %donner envie de lire la suite. Elle doit donner assez d’informations
@@ -223,6 +199,8 @@ have a general view.
   \label{flowchart_svs}
 \end{figure}
 
+Let's have a closer look to each part of this system.
+
 \subsection{Features extraction}
 
 The features extraction consists in extract, from a raw signal or a
@@ -273,7 +251,7 @@ on whether the given sound data has been indeed produced by the person who procl
 to be the speaker.
 To take a final decision, we just have to threshold the computed score.
 
-%NAIVE EXAMPLE OF SPEAKER RECO? AWESOME!
+%BONUS: NAIVE EXAMPLE OF SPEAKER RECO? AWESOME!
 
 \section{Dimension reduction}
 
@@ -308,9 +286,6 @@ A common approach to project vectors into a better subspace is to
 train a projection matrix offline using a training database with a lot
 of classes (different speakers). Then, during the speaker verification process, we only
 have to project our vectors using our newly learned projection matrix.
-
-
-%section on LDA?
 
 \chapter{Spherical Discriminant Analysis}
 
@@ -388,7 +363,8 @@ This method has two advantages:
 \item The convergence may be faster thanks to the speed ups.
 \end{itemize}
 
-%add pseudocode
+%BONUS: add pseudocode
+
 \section{Principle}
 
 We have previously seen that we are using a cosine distance between
@@ -434,7 +410,7 @@ a subspace suitable for cosine distance scoring.
 \section{Algorithm}
 
 In order to find this matrix, we have to find the derivative of $S_b -
-S_w$ in order to apply a gradient descent method. % phrase bizarre
+S_w$ in order to apply a gradient descent method. %CORRECT: phrase bizarre
 
 Let $F(W) = S_b - S_w$, then the derivative is defined as below:
 $$\frac{\partial{F(W)}}{\partial{W}} =
@@ -451,7 +427,7 @@ Where:
 We now only have to find the projection matrix $W$ which minimize
 $F(W)$ using the previously seen gradient descent method with the
 derivative $\frac{\partial{F(W)}}{\partial{W}}$.
-%\subsection{Demonstration of the derivative}
+%BONUS: \subsection{Demonstration of the derivative}
 
 
 \subsection{Example}
@@ -506,9 +482,9 @@ This allowed me to have a matlab-like syntax.
     Matrix mat2("[1 2 3; 4 5 6; 7 8 9]");
 
     mat.zero();
-    mat[0][0] = 42.0; 
+    mat[0][0] = 42.0;
     mat = mat * mat2 - mat2 + mat * 2.0;
-    
+
     std::cout << mat << std::endl;
     std::cout << mat[0] << std::endl;
   \end{lstlisting}
@@ -595,10 +571,7 @@ Linear Discriminant Analysis (PLDA).
 
 \section{Experiments}
 
-
-
-
-%Explain the whoooole process and the whole specifications EVERYTHING
+%TODO: Explain the whoooole process and the whole specifications EVERYTHING
 %FROM THE BEGINNING HTK, GMM, EM, A
 
 
@@ -648,9 +621,10 @@ costs to a miss and a false-alarm error. The $P_{Target}$ is the
 probability to have a true access.
 
 \section{Discuss}
-% Previous work, Related work, future work
+%TODO: Previous work, Related work, future work
+
 \chapter*{Conclusion}
-%Quelques paragraphes. Une conclusion qui résume clairement le contenu
+%TODO: Quelques paragraphes. Une conclusion qui résume clairement le contenu
 %de votre rédaction, dans le même ordre que le contenu présenté était
 %détaillé. La conclusion doit ensuite mettre l’accent sur les
 %principaux intérêts / fonctionnalités de ce que vous avez présenté et
@@ -661,7 +635,9 @@ probability to have a true access.
 %encore à explorer, quels nouvelles questions ou problèmes se posent,
 %quels autres sujets semblent liés etc.
 
+\chapter*{Acknowledgement}
+Thanks to my supervisor Reda Dehak for his explanations.
+%TODO: finish acknow
+
 \bibliography{final_report} \nocite{*}
 \end{document}
-
-%%% 1206.tex ends here.
