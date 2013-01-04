@@ -606,13 +606,14 @@ model than the noise model.
 
 \subsection{Modeling}
 
-%% The BECARS module of the ENST (Blouet et al., 2004) is used to build
-%% probabilistic speaker models which are large GMMs of 512 Gaussians
-%% with diagonal covariance matrices. The world model is trained from the
-%% Fisher English database Part 1 and 2 and NIST 2003 by applying LBG
-%% based Expectation-Maximisation algorithm. The speaker models are
-%% estimated by Maximum A Posteriori adaptation from the world model by
-%% updating the Gaussian mean vectors only.
+We build probabilistic speaker models which are large GMMs of 2048
+components with diagonal covariance matrices by a Maximum A Posteriori
+(MAP) adaptation from the Universal Background Model (UBM) which is a
+large GMM representing every speakers.  This UBM is trained offline
+thanks to the Expectation Maximization (EM) algorithm.  From this
+newly built speaker GMM, we concatanate the mean of every component to
+obtain a supervector of dimension 122880. Then, we can obtain a
+low-dimensional vector called i-vector.
 
 \subsection{Dimension reduction}
 \subsection{Scoring}
