@@ -206,17 +206,34 @@ have a general view.
 \end{figure}
 
 \subsection{Features extraction}
+
+The features extraction consists in extract, from a raw signal or a
+pre-processed signal, features that represent more accurately the
+human speech.
+
 %TODO
 \subsection{Voice activity detection/Speaker diarization}
-%TODO
+
+\paragraph{Voice activity detection} TODO
+\paragraph{Speaker diarization} TODO
+
 \subsection{Modeling}
 %TODO
+%We build probabilistic models based on the previously extracted fea-
+%tures in order to represent one specific speaker. The main focuses are what models are
+%used and how they are trained.
 \subsection{Dimension reduction}
 %TODO
 \subsection{Scoring}
-%TODO
+%Given a trained speaker model, we want to determine how well it per-
+%forms. This is done by comparing false alarm percentages to miss percentages. This phase
+%also allows us to adjust our model according to how much false alarm we want to tolerate
+%compared to misses.
+
 \subsection{Threshold}
-%TODO
+%The final goal of a well tuned speaker verification system is to take a decision
+%on whether the given sound data has been indeed produced by the person who proclaims
+%to be the speaker.
 
 In our system:
 \begin{description}
