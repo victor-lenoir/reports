@@ -581,18 +581,29 @@ speakers and performing 576672196 tests. %CORRECT: Faux chiffres.
 
 \subsection{Features extraction}
 
-%% The feature extraction is processed by the ALIZE module of the ELISA
-%% Consortium (Magrin- Chagnolleau et al., 2001). First, this one sampled
-%% the speech signal every 10ms on a 20ms sliding window. From this
-%% window, 16 Linear Frequency Cepstral Coefficients (LFCC) are
-%% extracted.  Then, the 16 first order deltas are computed. A
-%% 33-dimensional cepstral vector is obtained by taking the 16 LFCCs, the
-%% 16 first order deltas and the delta energy. Finally, normalisation is
-%% performed such that the 33 features are centred on zero and scaled to
-%% an unitary variance. Fur- thermore, cepstral vectors corresponding to
-%% the silence are skipped by a Bi-Gaussian model of the speech energy.
+The features extraction is processed by HTK. First, this one sampled
+the speech signal every 10ms on a 25ms sliding window. From this
+window, the energy and 19 Mel-Frequency Cepstral Coefficients (MFCC)
+are extracted.  Then, the first and second order deltas are
+computed. A 60-dimensional cepstral vector is obtained by taking the
+19 MFCCs, the energy, the 20 first order deltas and the 20 second
+order deltas.\\\\
+These coefficients are known to match the variation of the human ear's
+most important frequency bandwidths. In order to extract the
+phonetically important traits of speech, the Mel scale uses filters
+based on linear scales as well as logarithm scales. MFCCs partially
+absorb variations caused by the physical condition of the speakers
+vocal cord.
 
 \subsection{Voice activity detection/Speaker diarization}
+
+To get rid of the noise/silence segments, we use an energy-based voice
+activity detection method described in the paper of \cite{CRIM}.  This
+method reside in learning two generative models (Gaussian Mixture
+Model): one for speech and one for noise and silence. This enable us
+to keep the segment if the segment is likelier to belong to the speech
+model than the noise model.
+
 \subsection{Modeling}
 
 %% The BECARS module of the ENST (Blouet et al., 2004) is used to build
