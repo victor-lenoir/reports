@@ -251,14 +251,22 @@ further processing.
 
 \subsection{Voice activity detection/Speaker diarization}
 
-\paragraph{Voice activity detection} TODO
-\paragraph{Speaker diarization} TODO
+\paragraph{Voice activity detection} Voice activity detection is a technique used to detect human speech from a signal.
+The idea is to separate speech segment from silence and noise.
+
+\paragraph{Speaker diarization} Speaker diarization is the process of partitioning a raw signal into segments assigned to different speakers. This problem consists in determining the number of speakers in a given signal
+and in partitioning this signal into segments. It's a mandatory step for speaker verification systems.
+
+This part of the process is useful because the noise and silence corrupts the speaker model.
 
 \subsection{Modeling}
-%TODO
-%We build probabilistic models based on the previously extracted fea-
-%tures in order to represent one specific speaker. The main focuses are what models are
-%used and how they are trained.
+
+Modeling resides in finding an unique representation (a model) of a
+speaker from the speaker features.  For example a naive model would be
+to compute the mean of the speaker features (which is equivalent to a
+gaussian model). Then, the model would be a vector of the dimension of
+the features.
+
 \subsection{Dimension reduction}
 %TODO
 \subsection{Scoring}
