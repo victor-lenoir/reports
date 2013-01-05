@@ -618,16 +618,14 @@ low-dimensional vector called i-vector.
 \subsection{Dimension reduction}
 \subsection{Scoring}
 
-%In our system:
-%\begin{description}
-%\item[Features] Cepstral vectors (acoustic parameters);
-%\item[Speaker model] Identity-Vector (Ivector, 600-dim vector which
-%  represents the speaker);
-%\item[Low-dimensional speaker model] 400-dim vector obtained by
-%  Probabilistic Linear Discriminant Analysis (PLDA)
-%\item[Score] Cosine-Distance between two low-dimensional speaker models;
-%\item[Decision] Whether the speakers are the same or not.
-%\end{description}
+The scoring is just the cosine similarity between two projected i-vectors.
+In practise we are doing the projection and the scoring at the same time:
+Let $y_i$ the projected i-vector, $x_i$ the i-vector and $P$ the projection matrix.\\
+Then the score is defined as follow:
+$$\text{score} = \frac{y_i^Ty_j}{|y_i||y_j|}$$
+with
+$$y_i = P^Tx_i$$
+$$\text{score} = \frac{x_i^TPP^Tx_j}{|x_i^TP||x_j^TP|}$$
 
 \section{Results}
 
