@@ -280,7 +280,8 @@ speakers are likely to be far away.
 
 We can see in the plot \ref{lda} that the LDA has accomplished its
 goal: the within class subspace covariance is obviously smaller than
-the one in the original space.
+the one in the original space and the separation between classes is
+easily done.
 
 A common approach to project vectors into a better subspace is to
 train a projection matrix offline using a training database with a lot
@@ -634,9 +635,9 @@ threshold represents the sensibility of the system: a low threshold
 will induce to accept easily a speaker while a high threshold will
 induce a lot of rejections.
 
-The system has to be calibrated to find a trade-off between acceptation
-and rejections. That is why we introduce the Decision Error Trade-off
-(DET).
+The system has to be calibrated to find a trade-off between
+acceptations and rejections. That is why we introduce the Decision
+Error Trade-off (DET).
 
 \section{Results}
 
