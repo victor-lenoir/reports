@@ -619,13 +619,21 @@ low-dimensional vector called i-vector.
 \subsection{Scoring}
 
 The scoring is just the cosine similarity between two projected i-vectors.
-In practise we are doing the projection and the scoring at the same time:
+In practice, we are doing the projection and the scoring at the same time:
 Let $y_i$ the projected i-vector, $x_i$ the i-vector and $P$ the projection matrix.\\
 Then the score is defined as follow:
 $$\text{score} = \frac{y_i^Ty_j}{|y_i||y_j|}$$
 with
 $$y_i = P^Tx_i$$
-$$\text{score} = \frac{x_i^TPP^Tx_j}{|x_i^TP||x_j^TP|}$$
+$$\text{score} = \frac{x_i^TPP^Tx_j}{|x_i^TP||x_j^TP|}$$ We now have a
+scalar that we just have to threshold to take a decision.  The
+threshold represents the sensibility of the system: a low threshold
+will induce to accept easily a speaker while a high threshold will
+induce a lot of rejections.
+
+The system has to be calibrated to find a tradeoff between acceptation
+and rejections. That is why we introduce the Decision Error Trade-off
+(DET).
 
 \section{Results}
 
