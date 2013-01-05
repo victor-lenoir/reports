@@ -471,9 +471,8 @@ and solutions found.
 
 The implementation was made in C++ using the blas library for matrix
 computations.  However, due to the numerous required calls to blas and
-its heavy syntax, I decided to do a matrix class which will call blas.
-This allowed me to have a matlab-like syntax.
-
+its heavy syntax, I decided to do an overlay matrix class which will
+dispatch calls to blas. This allowed me to have a matlab-like syntax.
 
 \lstset{language=c++}
 \begin{figure}[H]
@@ -587,13 +586,12 @@ window, the energy and 19 Mel-Frequency Cepstral Coefficients (MFCC)
 are extracted.  Then, the first and second order deltas are
 computed. A 60-dimensional cepstral vector is obtained by taking the
 19 MFCCs, the energy, the 20 first order deltas and the 20 second
-order deltas.\\\\
-These coefficients are known to match the variation of the human ear's
-most important frequency bandwidths. In order to extract the
-phonetically important traits of speech, the Mel scale uses filters
-based on linear scales as well as logarithm scales. MFCCs partially
-absorb variations caused by the physical condition of the speakers
-vocal cord.
+order deltas.\\\\ These coefficients are known to match the variation
+of the human ear's most important frequency bandwidths. In order to
+extract the phonetically important traits of speech, the Mel scale
+uses filters based on linear scales as well as logarithm scales. MFCCs
+partially absorb variations caused by the physical condition of the
+speakers vocal cord.
 
 \subsection{Voice activity detection/Speaker diarization}
 
@@ -616,6 +614,11 @@ obtain a supervector of dimension 122880. Then, we can obtain a
 low-dimensional vector called i-vector.
 
 \subsection{Dimension reduction}
+
+This part is the only variable part. We will use the Probabilistic
+Linear Discriminant Analysis (PLDA) as a reference and try the
+Spherical Discriminant Analysis (SDA) described in this paper.
+
 \subsection{Scoring}
 
 The scoring is just the cosine similarity between two projected i-vectors.
