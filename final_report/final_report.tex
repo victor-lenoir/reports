@@ -154,7 +154,7 @@ legal status in some countries as a proof to authenticate a speaker on
 a tape recording.  In this report, we consider the problem of voice
 authentication, generally called the speaker verification
 problem. More precisely, we focus on the text-independent speaker
-verification i.e. we do not consider the uttered text.\\\\ In our
+verification, i.e. we do not consider the uttered text.\\\\ In our
 speaker verification task, speakers are first modeled from enrollment
 data coming from phone recordings. During the verification task, these
 models enable to check whether a segment of speech is uttered by a
@@ -204,7 +204,7 @@ Let's have a closer look to each part of this system.
 \subsection{Features extraction}
 
 The features extraction consists in extract, from a raw signal or a
-pre-processed signal, features that represent more accurately the
+preprocessed signal, features that represent more accurately the
 human speech.
 
 Raw speech signals are difficult to process since the information held
@@ -212,7 +212,7 @@ is very dense and for the most part not useful when it comes to speech
 recognition or speaker verification. In order to focus on the
 important information, it is common to proceed with feature
 extraction.  Feature extraction is the process of collecting a set of
-coefficients that represent as accuratly as possible phonetic events,
+coefficients that represent as accurately as possible phonetic events,
 thus changing the sound representation to a more suitable one for
 further processing.
 
@@ -228,10 +228,10 @@ This part of the process is useful because the noise and silence corrupts the sp
 
 \subsection{Modeling}
 
-Modeling resides in finding an unique representation (a model) of a
-speaker from the speaker features.  For example a naive model would be
+Modeling resides in finding a unique representation (a model) of a
+speaker from the speaker features.  For example, a naive model would be
 to compute the mean of the speaker features (which is equivalent to a
-gaussian model). Then, the model would be a vector of the dimension of
+Gaussian model). Then, the model would be a vector of the dimension of
 the features.
 
 \subsection{Dimension reduction}
@@ -246,7 +246,7 @@ results in a score of likeness of the models.
 
 \subsection{Threshold}
 
-The final goal of a well tuned speaker verification system is to take a decision
+The final goal of a well-tuned speaker verification system is to make a decision
 on whether the given sound data has been indeed produced by the person who proclaims
 to be the speaker.
 To take a final decision, we just have to threshold the computed score.
@@ -469,10 +469,10 @@ and solutions found.
 
 \subsection{Specifications}
 
-The implementation was made in C++ using the blas library for matrix
-computations.  However, due to the numerous required calls to blas and
+The implementation was made in C++ using the Blas library for matrix
+computations.  However, due to the numerous required calls to Blas and
 its heavy syntax, I decided to do an overlay matrix class which will
-dispatch calls to blas. This allowed me to have a matlab-like syntax.
+dispatch calls to Blas. This allowed me to have a Matlab-like syntax.
 
 \lstset{language=c++}
 \begin{figure}[H]
@@ -519,7 +519,7 @@ Let $n$ be the total number of data points (speech utterances), $d$ be
 the dimension of the data and $d'$ the dimension of the projected
 data.
 
-Then the complexity is equal to:
+Then, the complexity is equal to:
 $$\circ{(n^2.(d^2.d'+d.d'+d'^2))} = \circ{(n^2.(d^2.d'+d'^2))} = \circ{(n^2d^2d'+n^2d'^2)}$$
 In our application we have:
 \begin{itemize}
@@ -564,7 +564,7 @@ New complexity: $$\circ{(n^2.d+n.d^2.d')}$$
 This chapter describes the obtained results given by the experiments
 realized to test our dimension reduction method. First, the whole step
 of parametrization, the used tools and the used corpus to perform
-the NIST 2012 SRE campaign are described. Then, the results are
+the NIST 2012 Speaker Recognition (SRE) campaign are described. Then, the results are
 presented and compared to the results obtained from the Probabilistic
 Linear Discriminant Analysis (PLDA).
 
@@ -582,7 +582,7 @@ speakers and performing 576672196 tests. %CORRECT: Faux chiffres.
 
 The features extraction is processed by HTK. First, this one sampled
 the speech signal every 10ms on a 25ms sliding window. From this
-window, the energy and 19 Mel-Frequency Cepstral Coefficients (MFCC)
+window, the energy and 19 Mel-Frequency Cepstral Coefficients (MFCCs)
 are extracted.  Then, the first and second order deltas are
 computed. A 60-dimensional cepstral vector is obtained by taking the
 19 MFCCs, the energy, the 20 first order deltas and the 20 second
@@ -607,10 +607,10 @@ model than the noise model.
 We build probabilistic speaker models which are large GMMs of 2048
 components with diagonal covariance matrices by a Maximum A Posteriori
 (MAP) adaptation from the Universal Background Model (UBM) which is a
-large GMM representing every speakers.  This UBM is trained offline
+large GMM representing every speaker.  This UBM is trained offline
 thanks to the Expectation Maximization (EM) algorithm.  From this
-newly built speaker GMM, we concatanate the mean of every component to
-obtain a supervector of dimension 122880. Then, we can obtain a
+newly built speaker GMM, we concatenate the mean of every component to
+obtain a super-vector of dimension 122880. Then, we can obtain a
 low-dimensional vector called i-vector.
 
 \subsection{Dimension reduction}
@@ -629,12 +629,12 @@ $$\text{score} = \frac{y_i^Ty_j}{|y_i||y_j|}$$
 with
 $$y_i = P^Tx_i$$
 $$\text{score} = \frac{x_i^TPP^Tx_j}{|x_i^TP||x_j^TP|}$$ We now have a
-scalar that we just have to threshold to take a decision.  The
+scalar that we just have to threshold to make a decision.  The
 threshold represents the sensibility of the system: a low threshold
 will induce to accept easily a speaker while a high threshold will
 induce a lot of rejections.
 
-The system has to be calibrated to find a tradeoff between acceptation
+The system has to be calibrated to find a trade-off between acceptation
 and rejections. That is why we introduce the Decision Error Trade-off
 (DET).
 
