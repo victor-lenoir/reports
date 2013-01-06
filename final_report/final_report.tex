@@ -166,12 +166,6 @@ verification context then, I will describe the spherical discriminant
 analysis principle and algorithm. Finally I will do two experiments to
 compare the performance of this new dimension reduction technique.
 
-%TODO: Une introduction avec le contexte général de votre travail, une
-%description des problèmes auxquels vous voulez répondre et comment
-%vous y répondez.  L’introduction doit capturer le lecteur et lui
-%donner envie de lire la suite. Elle doit donner assez d’informations
-%pour que celui-ci puisse comprendre l’intérêt de votre travail et la
-%portée de vos résultats.  Plan
 \chapter{Context: Speaker verification system}
 
 
@@ -203,7 +197,7 @@ have a general view.
       \node[cont] (s7) at (0,-10) {Score}
       edge [<-] node[auto] {Scoring} (s5)
       edge [<-] node[auto] {Scoring} (s6);
-      \node[cont] (s8) at (0,-12) {Decision}
+      \node[cont] (s8) at (-3,-10) {Decision}
       edge [<-] node[auto] {Threshold} (s7);
     \end{tikzpicture}
   \end{center}
