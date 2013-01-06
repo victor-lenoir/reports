@@ -131,6 +131,41 @@ A copy of the license is provided in the file COPYING.DOC.
 \newpage
 
 \chapter*{Introduction}
+
+Nowadays, in a lot of secure applications, people have to prove their
+own identity to go into a critical system. Most of these applications
+are based on password authentications as in bank cash points or in the
+access of some protected buildings. However in such systems, a robber
+can easily find the password and use it to gain access to the critical
+area. For this reason, more and more authentication systems are based
+on biometrical features like fingerprints, iris or voice which present
+more inviolable features. Indeed, the study of these biometrical
+features is an expanding research field. Furthermore, it is known that
+fingerprints have been used extensively in criminal investigations for
+a long time. Today, voice recognition systems are beginning to have a
+legal status in some countries as a proof to authenticate a speaker on
+a tape recording.  In this report, we consider the problem of voice
+authentication, generally called the speaker verification
+problem. More precisely, we focus on the text-independent speaker
+verification i.e we do not consider the uttered text.  In our speaker
+verification task, speakers are first modelled from enrolment data
+coming from phone recordings. During the verification task, these
+models enable to check whether a segment of speech is uttered by a
+hypothesised speaker. For a few years, the community has been more and
+more interested in resolving this verification problem even if the
+enrolment conditions are different during the training step and the
+testing step.\\ In this report, we are particularly interested in one
+of the process of a verification system: the dimension reduction step.
+The goal of the dimension reduction is to find a model subspace which
+yields superior classification performance than the original model
+space. I will present a dimension reduction called Spherical
+Discriminant Analysis (SDA). It consists in maximizing the cosine
+distance between different speakers while minimizing cosine distance
+between same speakers.\\ I will first introduce the speaker
+verification context then, I will describe the spherical discriminant
+analysis principle and algorithm. Finally I will do two experiments to
+compare the performance of this new dimension reduction technique.
+
 %TODO: Une introduction avec le contexte général de votre travail, une
 %description des problèmes auxquels vous voulez répondre et comment
 %vous y répondez.  L’introduction doit capturer le lecteur et lui
@@ -139,29 +174,6 @@ A copy of the license is provided in the file COPYING.DOC.
 %portée de vos résultats.  Plan
 \chapter{Context: Speaker verification system}
 
-Nowadays, in a lot of secure applications, people have to prove their
-own identity to go into a critical system. Most of these applications
-are based on password authentications as in bank cash points or in the
-access of some protected buildings. However, in such systems, a robber
-can easily find the password and use it to gain access to the critical
-area. For this reason, more and more authentication systems are based
-on bio-metrical features like fingerprints, iris or voice which present
-more inviolable features. Indeed, the study of these bio-metrical
-features is an expanding research field. Furthermore, it is known that
-fingerprints have been used extensively in criminal investigations for
-a long time. Today, voice recognition systems are beginning to have a
-legal status in some countries as a proof to authenticate a speaker on
-a tape recording.  In this report, we consider the problem of voice
-authentication, generally called the speaker verification
-problem. More precisely, we focus on the text-independent speaker
-verification, i.e. we do not consider the uttered text.\\\\ In our
-speaker verification task, speakers are first modeled from enrollment
-data coming from phone recordings. During the verification task, these
-models enable to check whether a segment of speech is uttered by a
-hypothesized speaker. For a few years, the community has been more and
-more interested in resolving this verification problem even if the
-enrollment conditions are different during the training step and the
-testing step.
 
 \section{Speaker verification system}
 
@@ -236,8 +248,9 @@ the features.
 
 \subsection{Dimension reduction}
 
-The goal of the dimension reduction is to find a model subspace which yields
-superior classification performance than the original model space.
+The goal of the dimension reduction is to find a model subspace which
+yields superior classification performance than the original model
+space.
 
 \subsection{Scoring}
 
@@ -575,7 +588,7 @@ This section describes the experiments realized to compare the
 dimension reduction methods. These experiments are performed on the
 trials of the NIST 2012 SRE campaign which consists in training 50
 speakers and performing 50 tests. We then make a large scale
-experiment with a training of 2000 speakers and performing 1000 tests.
+experiment with a training of 2000 speakers and performing 100 tests.
 
 \subsection{Features extraction}
 
@@ -692,7 +705,7 @@ without projection and is at 3.3\% with the SDA projection.
   \centering
   \includegraphics[width=450px]{det_curves_huge}
   \caption{DET curves for a training of 2000 speakers and a testing of
-    1000 speakers.}
+    100 speakers.}
   \label{detcurvehuge}
 \end{figure}
 
@@ -710,16 +723,59 @@ explained by a few things:
 %TODO: Previous work, Related work, future work
 
 \chapter*{Conclusion}
-%TODO: Quelques paragraphes. Une conclusion qui résume clairement le contenu
-%de votre rédaction, dans le même ordre que le contenu présenté était
-%détaillé. La conclusion doit ensuite mettre l’accent sur les
-%principaux intérêts / fonctionnalités de ce que vous avez présenté et
-%mettre en avant votre travail.  Ne pas se contenter de faire une
-%resucée du résumé. D’ailleurs, ce n’est pas une «synthèse», c’est une
-%«conclusion». En d’autres termes, ne pas s’arrêter à un résumé de
-%l’article, mais finir en ouvrant le débat : quelles pistes restent
-%encore à explorer, quels nouvelles questions ou problèmes se posent,
-%quels autres sujets semblent liés etc.
+%TODO: Quelques paragraphes. Une conclusion qui résume clairement le
+%contenu de votre rédaction, dans le même ordre que le contenu
+%présenté était détaillé. La conclusion doit ensuite mettre l’accent
+%sur les principaux intérêts / fonctionnalités de ce que vous avez
+%présenté et mettre en avant votre travail.  Ne pas se contenter de
+%faire une resucée du résumé. D’ailleurs, ce n’est pas une «synthèse»,
+%c’est une «conclusion». En d’autres termes, ne pas s’arrêter à un
+%résumé de l’article, mais finir en ouvrant le débat : quelles pistes
+%restent encore à explorer, quels nouvelles questions ou problèmes se
+%posent, quels autres sujets semblent liés etc.
+
+
+%% This report describes the factor analysis model developed in the LRDE
+%% Speaker Verification framework. First, it was shown that the baseline
+%% system is not designed to cope with the channel effects. Moreover, the
+%% Maximum A Posteriori adaptation does not consider the uncertainty
+%% coming from the speaker and the channel variabilities. Then, an
+%% approach based on a factor analysis of GMM based supervectors was
+%% introduced. This one was developed in order to cope with channel
+%% effects and therefore to improve the results of the baseline
+%% system. In this approach, the speaker and the channel components are
+%% split by assuming that they come from different subspaces namely the
+%% speaker and the channel spaces. This assumption is based on the
+%% classical MAP and the eigenchannel MAP assumptions. The eigenchannel
+%% MAP assumption provides a dimensional reduction of the channel space
+%% while the classical MAP does not. In this report, speaker models are
+%% based on the hyperparameters of the factor analysis which enable to
+%% define a likelihood objective function. Then, the Maximum Likelihood
+%% (ML) and the Minimum Divergence (MD) estimations are introduced in
+%% order to model target and non-target speakers by optimising this
+%% likelihood function. Finally, the decision score is given by the
+%% likelihood ratio which deals with the channel effects and indeed
+%% performs channel compensation.  Our factor analysis tool is used on
+%% the NIST 2006 SRE campaign (female trials). It is compared to a
+%% baseline system based on Gaussian mixture models. The obtained results
+%% present some unexpected annoyances. Actually, the channel compensation
+%% system gives worse results than the baseline system. Our channel
+%% compensation gives 20\% of Equal Error Rate (ERR) while the baseline
+%% system gives 10\%. However, today the factor analysis model is known
+%% as the most powerful method to perform channel compensation. Then, our
+%% future work will consist in studying why we obtained such bad results.
+%% Once the results will go far the 10\% of EER, the system will be
+%% considered as well tuned and so we will develop new features for the
+%% factor analysis model. First, it would be interesting to develop
+%% progressive speaker adaptation in order to produce a better model
+%% under the classical MAP assumption (Shou-Chun, 2006). Otherwise, we
+%% would consider the eigenvoice MAP as- sumption which reduces the
+%% speaker space. Moreover, it would be interesting to implement the
+%% likelihood function approximation described by Kenny et al. (2007)
+%% which enables to perform online the speaker verification
+%% task. Finally, we would like to develop a system mixing factor
+%% analysis and support vector machines which know how to discriminate
+%% target and non-target speakers by using a supervised learning.
 
 \chapter*{Acknowledgement}
 
