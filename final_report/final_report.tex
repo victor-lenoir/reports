@@ -616,7 +616,12 @@ low-dimensional vector called i-vector.
 
 This part is the only variable part. We will use the Probabilistic
 Linear Discriminant Analysis (PLDA) as a reference and try the
-Spherical Discriminant Analysis (SDA) described in this paper.
+Spherical Discriminant Analysis (SDA) described in this paper.  For
+the SDA, we trained a SDA projection matrix from dimension 600 to
+dimension 250 ($600*250 = 150000$ parameters to find).
+
+We performed 20 iterations for the small experiment and 600 iterations
+for the huge experiment.
 
 \subsection{Scoring}
 
@@ -696,10 +701,11 @@ terribly wrong. Indeed, the EER without projection is at 2.64\% while
 the EER with the SDA projection is almost at 35\%. This can be
 explained by a few things:
 \begin{itemize}
-\item Wrong dest dim;
-\item Not convergerd;
-\item local minima
+\item The gradient descent didn't converged yet;
+\item The gradient descent is stucked in a bad local minimum;
+\item The dimension of the projected data is too low.
 \end{itemize}
+
 %\section{Discuss}
 %TODO: Previous work, Related work, future work
 
