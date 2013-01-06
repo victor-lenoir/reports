@@ -573,8 +573,9 @@ Linear Discriminant Analysis (PLDA).
 
 This section describes the experiments realized to compare the
 dimension reduction methods. These experiments are performed on the
-trials of the NIST 2012 SRE campaign which consists in training 2204
-speakers and performing 576672196 tests. %CORRECT: Faux chiffres.
+trials of the NIST 2012 SRE campaign which consists in training 50
+speakers and performing 50 tests. We then make a large scale
+experiment with a training of 2000 speakers and performing 1000 tests.
 
 \subsection{Features extraction}
 
@@ -673,7 +674,8 @@ probability to have a true access.
 \begin{figure}[H]
   \centering
   \includegraphics[width=450px]{det_curves}
-  \caption{DET curves.}
+  \caption{DET curves for a training of 50 speakers and a testing of
+    50 speakers.}
   \label{detcurve}
 \end{figure}
 
@@ -681,7 +683,7 @@ From plot \ref{detcurve}, we can see that the spherical discriminant
 analysis has improved classification. Indeed, the EER is at 0.339
 without projection and is at 0.33 with the SDA projection.
 
-\section{Discuss}
+%\section{Discuss}
 %TODO: Previous work, Related work, future work
 
 \chapter*{Conclusion}
