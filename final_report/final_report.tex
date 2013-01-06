@@ -680,9 +680,26 @@ probability to have a true access.
 \end{figure}
 
 From plot \ref{detcurve}, we can see that the spherical discriminant
-analysis has improved classification. Indeed, the EER is at 0.339
-without projection and is at 0.33 with the SDA projection.
+analysis has improved classification. Indeed, the EER is at 3.4\%
+without projection and is at 3.3\% with the SDA projection.
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=450px]{det_curves_huge}
+  \caption{DET curves for a training of 2000 speakers and a testing of
+    1000 speakers.}
+  \label{detcurvehuge}
+\end{figure}
+
+However, from plot \ref{detcurvehuge}, we can see that something went
+terribly wrong. Indeed, the EER without projection is at 2.64\% while
+the EER with the SDA projection is almost at 35\%. This can be
+explained by a few things:
+\begin{itemize}
+\item Wrong dest dim;
+\item Not convergerd;
+\item local minima
+\end{itemize}
 %\section{Discuss}
 %TODO: Previous work, Related work, future work
 
@@ -701,7 +718,7 @@ without projection and is at 0.33 with the SDA projection.
 \chapter*{Acknowledgement}
 
 Thanks to my supervisor Reda Dehak for his explanations, to Laurent
-Senta, Pierre Parutto for their proofreading and to all the LRDE for
+Senta, Pierre Parutto for their spell cheking and to all the LRDE for
 their support.
 
 \bibliography{final_report} \nocite{*}
