@@ -717,59 +717,34 @@ explained by a few things:
 %TODO: Previous work, Related work, future work
 
 \chapter*{Conclusion}
-%TODO: Quelques paragraphes. Une conclusion qui résume clairement le
-%contenu de votre rédaction, dans le même ordre que le contenu
-%présenté était détaillé. La conclusion doit ensuite mettre l’accent
-%sur les principaux intérêts / fonctionnalités de ce que vous avez
-%présenté et mettre en avant votre travail.  Ne pas se contenter de
-%faire une resucée du résumé. D’ailleurs, ce n’est pas une «synthèse»,
-%c’est une «conclusion». En d’autres termes, ne pas s’arrêter à un
-%résumé de l’article, mais finir en ouvrant le débat : quelles pistes
-%restent encore à explorer, quels nouvelles questions ou problèmes se
-%posent, quels autres sujets semblent liés etc.
 
+% TODO: Quelques paragraphes. Une conclusion qui résume clairement le
+% contenu de votre rédaction, dans le même ordre que le contenu
+% présenté était détaillé. La conclusion doit ensuite mettre l’accent
+% sur les principaux intérêts / fonctionnalités de ce que vous avez
+% présenté et mettre en avant votre travail.  Ne pas se contenter de
+% faire une resucée du résumé. D’ailleurs, ce n’est pas une «synthèse»,
+% c’est une «conclusion». En d’autres termes, ne pas s’arrêter à un
+% résumé de l’article, mais finir en ouvrant le débat : quelles pistes
+% restent encore à explorer, quels nouvelles questions ou problèmes se
+% posent, quels autres sujets semblent liés etc.
 
-%% This report describes the factor analysis model developed in the LRDE
-%% Speaker Verification framework. First, it was shown that the baseline
-%% system is not designed to cope with the channel effects. Moreover, the
-%% Maximum A Posteriori adaptation does not consider the uncertainty
-%% coming from the speaker and the channel variabilities. Then, an
-%% approach based on a factor analysis of GMM based supervectors was
-%% introduced. This one was developed in order to cope with channel
-%% effects and therefore to improve the results of the baseline
-%% system. In this approach, the speaker and the channel components are
-%% split by assuming that they come from different subspaces namely the
-%% speaker and the channel spaces. This assumption is based on the
-%% classical MAP and the eigenchannel MAP assumptions. The eigenchannel
-%% MAP assumption provides a dimensional reduction of the channel space
-%% while the classical MAP does not. In this report, speaker models are
-%% based on the hyperparameters of the factor analysis which enable to
-%% define a likelihood objective function. Then, the Maximum Likelihood
-%% (ML) and the Minimum Divergence (MD) estimations are introduced in
-%% order to model target and non-target speakers by optimising this
-%% likelihood function. Finally, the decision score is given by the
-%% likelihood ratio which deals with the channel effects and indeed
-%% performs channel compensation.  Our factor analysis tool is used on
-%% the NIST 2006 SRE campaign (female trials). It is compared to a
-%% baseline system based on Gaussian mixture models. The obtained results
-%% present some unexpected annoyances. Actually, the channel compensation
-%% system gives worse results than the baseline system. Our channel
-%% compensation gives 20\% of Equal Error Rate (ERR) while the baseline
-%% system gives 10\%. However, today the factor analysis model is known
-%% as the most powerful method to perform channel compensation. Then, our
-%% future work will consist in studying why we obtained such bad results.
-%% Once the results will go far the 10\% of EER, the system will be
-%% considered as well tuned and so we will develop new features for the
-%% factor analysis model. First, it would be interesting to develop
-%% progressive speaker adaptation in order to produce a better model
-%% under the classical MAP assumption (Shou-Chun, 2006). Otherwise, we
-%% would consider the eigenvoice MAP as- sumption which reduces the
-%% speaker space. Moreover, it would be interesting to implement the
-%% likelihood function approximation described by Kenny et al. (2007)
-%% which enables to perform online the speaker verification
-%% task. Finally, we would like to develop a system mixing factor
-%% analysis and support vector machines which know how to discriminate
-%% target and non-target speakers by using a supervised learning.
+This report describes a dimension reduction method developed in the
+LRDE Speaker Verification system.  First, we introduced the context in
+which we apply this dimension reduction method and what is its
+purpose.  Then, we presented the principle and the algorithm of the
+dimension reduction technique called spherical discriminant analysis
+(SDA).\\ Finally, we experimented and compared this new technique with
+other projection methods to see if the perfomance really was improved.
+We've seen that the dimension reduction technique was working for a
+small training corpus but didn't converged for a larger corpus.
+We have to try other gradient descent method and find a better initialization than the random one.
+
+%PLAN
+%Finally, we would like to develop a system mixing factor
+% analysis and support vector machines which know how to discriminate
+% target and non-target speakers by using a supervised learning.
+
 
 \chapter*{Acknowledgement}
 
